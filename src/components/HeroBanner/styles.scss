@@ -1,0 +1,23 @@
+.hero-banner {
+  &--container {
+    display: flex;
+    @include desktop {
+      height: 654px;
+    }
+  }
+
+  &--logo-container {
+    position: relative;
+    @include desktop {
+      margin: 2rem;
+      width: 203px;
+      height: 84px;
+    }
+
+    @include mobile {
+      margin: 2rem 1.5rem;
+      min-width: 116px;
+      height: 48px;
+    }
+  }
+}

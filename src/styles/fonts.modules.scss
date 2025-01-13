@@ -1,0 +1,30 @@
+//font sizes
+$font-size-extra-large: 3.5rem;
+$font-size-large: 3rem;
+$font-size-medium: 1.75rem;
+$font-size-small: 1.25rem;
+$font-size-extra-small: 1rem;
+
+//font weights
+$font-weight-black: 900;
+$font-weight-extrabold: 800;
+$font-weight-bold: 700;
+$font-weight-medium: 500;
+$font-weight-regular: 400;
+$font-weight-light: 300;
+$font-weight-extralight: 200;
+
+:export {
+  fontSizeExtraLarge: $font-size-extra-large;
+  fontSizeLarge: $font-size-large;
+  fontSizeMedium: $font-size-medium;
+  fontSizeSmall: $font-size-small;
+  fontSizeExtraSmall: $font-size-extra-small;
+  fontWeightBlack: $font-weight-black;
+  fontWeightExtrabold: $font-weight-extrabold;
+  fontWeightBold: $font-weight-bold;
+  fontWeightMedium: $font-weight-medium;
+  fontWeightRegular: $font-weight-regular;
+  fontWeightLight: $font-weight-light;
+  fontWeightExtralight: $font-weight-extralight;
+}

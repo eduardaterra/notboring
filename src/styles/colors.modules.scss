@@ -1,0 +1,36 @@
+//brand colors
+$principal-blue: #00478e;
+$principal-black: #060606;
+$principal-white: #ffffff;
+$principal-red: #e90818;
+$principal-orange: #ff5028;
+$principal-yellow: #f7ba81;
+
+//black colors
+$black-900: #393939;
+$black-800: #4b4b4b;
+$black-700: #5e5e5e;
+$black-600: #727272;
+$black-500: #868686;
+$black-400: #9b9b9b;
+$black-300: #b0b0b0;
+$black-200: #dddddd;
+$black-100: #f3f3f3;
+
+:export {
+  principalBlue: $principal-blue;
+  principalBlack: $principal-black;
+  principalWhite: $principal-white;
+  principalRed: $principal-red;
+  principalOrange: $principal-orange;
+  principalYellow: $principal-yellow;
+  black-900: $black-900;
+  black-800: $black-800;
+  black-700: $black-700;
+  black-600: $black-600;
+  black-500: $black-500;
+  black-400: $black-400;
+  black-300: $black-300;
+  black-200: $black-200;
+  black-100: $black-100;
+}
