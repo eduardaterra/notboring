@@ -2,8 +2,9 @@
 $font-size-extra-large: 3.5rem;
 $font-size-large: 3rem;
 $font-size-medium: 1.75rem;
-$font-size-small: 1.25rem;
-$font-size-extra-small: 1rem;
+$font-size-regular: 1.25rem;
+$font-size-small: 1rem;
+$font-size-extra-small: 0.75rem;
 
 //font weights
 $font-weight-black: 900;
@@ -18,6 +19,7 @@ $font-weight-extralight: 200;
   fontSizeExtraLarge: $font-size-extra-large;
   fontSizeLarge: $font-size-large;
   fontSizeMedium: $font-size-medium;
+  fontSizeRegular: $font-size-regular;
   fontSizeSmall: $font-size-small;
   fontSizeExtraSmall: $font-size-extra-small;
   fontWeightBlack: $font-weight-black;

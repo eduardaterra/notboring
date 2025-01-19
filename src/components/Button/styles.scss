@@ -1,0 +1,32 @@
+.button {
+  &--red,
+  &--black {
+    all: unset;
+    cursor: pointer;
+    color: $principal-white;
+    font-size: $font-size-regular;
+    font-weight: $font-weight-bold;
+    transition: background 0.2s ease-in;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.4px;
+    font-family: "fontSecondary", "fontSecondary Fallback", sans-serif !important;
+  }
+  &--red {
+    background-color: $principal-red;
+    &:hover {
+      background-color: #c70007;
+    }
+  }
+  &--black {
+    background-color: $principal-black;
+    &:hover {
+      background-color: $black-900;
+    }
+  }
+  &:active {
+    opacity: 0.3;
+  }
+}

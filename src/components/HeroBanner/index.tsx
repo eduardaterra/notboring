@@ -12,8 +12,7 @@ export default function HeroBanner({
           className="hero-banner--logo-image"
           src="/vertical-logo.svg"
           alt="NotBoring logo"
-          layout="fill"
-          objectFit="contain"
+          fill
         />
       </div>
     </div>

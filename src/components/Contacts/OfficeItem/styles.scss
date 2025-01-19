@@ -1,0 +1,49 @@
+.office-item {
+  &--image-container {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+  &--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    @include desktop {
+      gap: 1rem;
+    }
+    @include mobile {
+      gap: 0.5rem;
+    }
+  }
+  &--text-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  &--city {
+    text-transform: uppercase;
+    font-size: $font-size-regular;
+    line-height: 140%;
+    font-weight: $font-weight-regular;
+    color: $principal-white;
+    @include desktop {
+      margin-bottom: 1rem;
+    }
+    @include mobile {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &--address,
+  &--phone {
+    font-size: $font-size-small;
+    line-height: 140%;
+    font-weight: $font-weight-regular;
+    color: $black-400;
+    @include desktop {
+      max-width: 236px;
+    }
+  }
+}

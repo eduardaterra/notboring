@@ -1,0 +1,48 @@
+.contacts {
+  &--container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    @include desktop {
+      flex-direction: row;
+      padding: 120px 0 88px;
+      gap: 27px;
+    }
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+  &--cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    @include desktop {
+      max-width: 320px;
+    }
+    @include mobile {
+      width: 100%;
+      padding: 56px 0;
+    }
+  }
+  &--text {
+    color: $principal-white;
+    font-size: $font-size-regular;
+    line-height: 120%;
+    font-weight: $font-weight-regular;
+    text-align: left;
+  }
+
+  &--offices-container {
+    display: grid;
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1.5rem;
+    }
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 18px;
+      row-gap: 3rem;
+    }
+  }
+}

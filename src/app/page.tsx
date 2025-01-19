@@ -1,12 +1,19 @@
+import Contacts from "@/components/Contacts";
+import Partners from "@/components/Partners";
 import HeroBanner from "@/components/HeroBanner";
-import TextBanner from "@/components/TextBanner";
+import About from "@/components/About";
+import offices from "@/mocks/offices.mock";
+import "./styles.scss";
 
 export default function Home() {
   return (
     <main>
       <HeroBanner />
-
-      <TextBanner />
+      <div className="home--content-container">
+        <About />
+        <Partners />
+        <Contacts offices={offices} />
+      </div>
     </main>
   );
 }
