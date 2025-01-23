@@ -1,0 +1,36 @@
+.text-area {
+  &--default,
+  &--error {
+    all: unset;
+    background-color: transparent;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+    letter-spacing: -0.32px;
+    padding: 1rem 1rem 0.5rem 1rem;
+    width: 100%;
+    min-height: 140px;
+    box-sizing: border-box;
+  }
+  &--default {
+    border: 1px solid $principal-white;
+    color: $principal-white;
+    opacity: 0.7;
+
+    &::placeholder {
+      color: $principal-white !important;
+    }
+
+    &:not(:placeholder-shown) {
+      opacity: 1;
+    }
+    &:focus {
+      opacity: 1;
+      border: 1px solid $principal-white;
+      color: $principal-white;
+    }
+  }
+  &--error {
+    border: 1px solid $principal-yellow;
+    color: $principal-yellow;
+  }
+}

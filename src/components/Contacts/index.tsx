@@ -1,7 +1,9 @@
 import type { HTMLAttributes } from "react";
 import type { OfficeItemProps } from "./OfficeItem";
 import OfficeItem from "./OfficeItem";
+import ContactForm from "./ContactForm";
 import Button from "../Button";
+
 import "./styles.scss";
 
 export interface ContactsProps extends HTMLAttributes<HTMLDivElement> {
@@ -23,6 +25,7 @@ export default function Contacts({ offices }: Readonly<ContactsProps>) {
           <OfficeItem key={office.city} {...office} />
         ))}
       </div>
+      <ContactForm />
     </div>
   );
 }

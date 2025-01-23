@@ -1,0 +1,36 @@
+.input {
+  &--default,
+  &--error {
+    all: unset;
+    box-sizing: border-box;
+    cursor: text;
+    background-color: transparent;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+    letter-spacing: -0.32px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+  &--default {
+    border: 1px solid $principal-white;
+    color: $principal-white;
+    opacity: 0.7;
+
+    &::placeholder {
+      color: $principal-white !important;
+    }
+
+    &:not(:placeholder-shown) {
+      opacity: 1;
+    }
+    &:focus {
+      opacity: 1;
+      border: 1px solid $principal-white;
+      color: $principal-white;
+    }
+  }
+  &--error {
+    border: 1px solid $principal-yellow;
+    color: $principal-yellow;
+  }
+}
