@@ -25,7 +25,7 @@ export default function Contacts({ offices }: Readonly<ContactsProps>) {
           <OfficeItem key={office.city} {...office} />
         ))}
       </div>
-      <ContactForm />
+      {/* <ContactForm /> */}
     </div>
   );
 }

@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     prependData: `@use './src/styles/mixins' as *;
     @use './src/styles/colors.modules.scss' as *;
     @use './src/styles/fonts.modules.scss' as *;
+    @use './src/styles/animations.modules.scss' as *;
     `,
   },
 };

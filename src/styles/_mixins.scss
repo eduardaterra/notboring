@@ -9,3 +9,11 @@
     @content;
   }
 }
+
+@mixin squaresAnimation($animations, $keyframe) {
+  @each $child, $duration in $animations {
+    &:nth-child(#{$child}) {
+      animation: #{$keyframe} #{$duration} forwards ease-in-out;
+    }
+  }
+}
