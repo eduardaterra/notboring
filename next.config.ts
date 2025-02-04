@@ -1,3 +1,4 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import path from "path";
 import type { NextConfig } from "next";
 
@@ -13,4 +14,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);

@@ -1,7 +1,16 @@
 import { fontSecondary } from "@/app/fonts";
+import config from "@/payload.config";
 import "./styles.scss";
+import { getPayload } from "payload";
 
-export default function About({ ...props }) {
+const getContent = async () => {
+  const payload = await getPayload({ config });
+  return await payload.find({ collection: "lp" });
+};
+
+export default async function About({ ...props }) {
+  const content = await getContent();
+  console.log(content);
   return (
     <div className="about--container" {...props}>
       <h3 className={`about--title ${fontSecondary.className}`}>
