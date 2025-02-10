@@ -1,16 +1,26 @@
+import type { HTMLAttributes } from "react";
+import clsx from "clsx";
 import Image from "next/image";
 import Input from "@/components/Input";
-import "./styles.scss";
 import TextArea from "@/components/TextArea";
 import Button from "@/components/Button";
+import "./styles.scss";
 
-export default function ContactForm() {
+interface ContactFormProps extends HTMLAttributes<HTMLDivElement>{
+  openForm: boolean;
+  setOpenForm: (value: boolean) => void;
+}
+
+export default function ContactForm({ openForm, setOpenForm, ...props }: Readonly<ContactFormProps>) {
   return (
-    <div className="contact-form--overlay">
-      <div className="contact-form--container">
-        <div className="contact-form--close-button">
+    <div className={clsx("contact-form--overlay ", openForm && 'open')} onClick={(e) => {
+      e.stopPropagation();
+        setOpenForm(!openForm)
+    }}{...props}>
+      <div className={clsx("contact-form--container", openForm && 'open')} onClick={(e) => e.stopPropagation()}>
+        <button className="contact-form--close-button" onClick={() => setOpenForm(!openForm)}>
           <Image src="/close.svg" alt="close icon" fill />
-        </div>
+        </button>
         <form action="">
           <div className="contact-form--content">
             <h3 className="contact-form--title">

@@ -24,7 +24,11 @@ export default function HeroBanner({
   const secondArray = createSquares(12, isExpanded, "second");
 
   return (
-    <div className="hero-banner--container" {...props}>
+    <div
+      className="hero-banner--container"
+      onClick={() => setIsExpanded(!isExpanded)}
+      {...props}
+    >
       <div
         className={clsx("hero-banner--logo-wrapper", isExpanded && "hidden")}
       >
@@ -63,12 +67,11 @@ export default function HeroBanner({
           isExpanded && "expanded"
         )}
       >
-        <button
+        <div
           className={clsx("hero-banner--video", isExpanded && "expanded")}
-          onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="center"></div>
-        </button>
+        </div>
       </div>
     </div>
   );

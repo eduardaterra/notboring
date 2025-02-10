@@ -5,7 +5,7 @@ import { getPayload } from "payload";
 
 const getContent = async () => {
   const payload = await getPayload({ config });
-  return await payload.find({ collection: "lp" });
+  return await payload.find({ collection: "pages" });
 };
 
 export default async function About({ ...props }) {

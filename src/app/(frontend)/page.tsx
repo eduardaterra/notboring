@@ -1,7 +1,7 @@
-import Contacts from "@/components/Contacts";
-import Partners from "@/components/Partners";
-import HeroBanner from "@/components/HeroBanner";
-import About from "@/components/About";
+import Contacts from "@/modules/Contacts";
+import Partners from "@/modules/Partners";
+import HeroBanner from "@/modules/HeroBanner";
+import About from "@/modules/About";
 import offices from "@/mocks/offices.mock";
 import "./styles.scss";
 

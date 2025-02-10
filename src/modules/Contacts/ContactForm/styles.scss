@@ -1,5 +1,8 @@
 .contact-form {
   &--overlay {
+    display: flex;
+    opacity: 0;
+  visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -7,8 +10,13 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
-    display: flex;
     justify-content: flex-end;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; 
+    &.open{
+      visibility: visible;
+      opacity: 1;
+    }
+
   }
   &--container {
     position: relative;
@@ -20,17 +28,25 @@
     height: 100vh;
     @include desktop {
       width: 736px;
+      transition: transform 0.6s ease-in-out;
+      transform: translateX(100%);
+      &.open {
+        transform: translateX(0%);
+      }
     }
     @include mobile {
       width: 100vw;
     }
   }
   &--close-button {
+    all: unset;
+    cursor: pointer;
     position: absolute;
+    padding: 4px;
     top: 34px;
     right: 32px;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
   }
   &--content {
     display: flex;
