@@ -73,6 +73,8 @@ export default function HeroBanner({ video }: Readonly<HeroBannerProps>) {
               autoPlay
               loop
               muted
+              preload="auto"
+
               // muted={!isExpanded}
             >
               <source src={video.url} type="video/mp4" />
