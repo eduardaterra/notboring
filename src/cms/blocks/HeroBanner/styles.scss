@@ -7,6 +7,9 @@
     height: 76vh;
     max-height: 76vh;
     overflow: visible;
+    @include mobile {
+      height: 575px;
+    }
   }
   &--logo-wrapper {
     position: absolute;
@@ -43,6 +46,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
     @include desktop {
       width: 74.5vw;
       height: 76vh;
@@ -58,8 +62,19 @@
         height: 100vh;
       }
     }
+    @include mobile {
+      align-items: flex-end;
+      margin-bottom: 58px;
+    }
   }
   &--video {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &--video-wrapper {
     all: unset;
     cursor: pointer;
     display: flex;
@@ -77,8 +92,10 @@
         width: 100vw;
       }
     }
+    @include mobile {
+      height: 400px;
+    }
   }
-
   &--video-close-btn {
     all: unset;
     cursor: pointer;
@@ -95,6 +112,123 @@
       opacity: 1;
     }
   }
+  &--play-icon {
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+  &--play-icon-wrapper {
+    position: relative;
+    @include desktop {
+      width: 40px;
+      height: 60px;
+    }
+    @include mobile {
+      width: 21px;
+      height: 32px;
+    }
+  }
+  @include mobile {
+    &--first-square-wrapper,
+    &--second-square-wrapper {
+      position: absolute;
+      width: fit-content;
+      z-index: 1000;
+      bottom: 0;
+      left: 0;
+      opacity: 1;
+      overflow: hidden;
+    }
+    &--second-square-wrapper {
+      left: unset;
+      top: 0;
+      right: 0;
+    }
+    &--first-square-container,
+    &--second-square-container {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 234px;
+      width: 100%;
+    }
+    &--first-square-item,
+    &--second-square-item {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: $principal-blue;
+      transition: opacity 0.2s ease-in-out;
+    }
+    &--first-square-item {
+      &.default {
+        opacity: 0;
+        $animations: (
+          4: 0.3s,
+          8: 0.3s,
+          10: 0.3s,
+        );
+
+        &:nth-child(11) {
+          animation-delay: 0.1s !important;
+        }
+        &:nth-child(9) {
+          animation-delay: 0.2s !important;
+        }
+        @include squaresAnimation($animations, fadeIn);
+      }
+
+      &.hidden {
+        opacity: 0;
+        $animations: (
+          3: 1s,
+          5: 0.8s,
+          6: 0.6s,
+          7: 0.4s,
+          11: 0.2s,
+          12: 0.1s,
+        );
+
+        @include squaresAnimation($animations, fadeInOut);
+      }
+    }
+    &--second-square-item {
+      &.default {
+        opacity: 0;
+        $animations: (
+          2: 0.3s,
+          6: 0.3s,
+          8: 0.3s,
+        );
+
+        &:nth-child(11) {
+          animation-delay: 0.1s !important;
+        }
+        &:nth-child(9) {
+          animation-delay: 0.2s !important;
+        }
+        @include squaresAnimation($animations, fadeIn);
+      }
+
+      &.hidden {
+        opacity: 0;
+        $animations: (
+          3: 1s,
+          5: 0.8s,
+          6: 0.6s,
+          7: 0.4s,
+          11: 0.2s,
+          12: 0.1s,
+        );
+
+        @include squaresAnimation($animations, fadeInOut);
+      }
+    }
+  }
+
   @include desktop {
     &--first-square-wrapper,
     &--second-square-wrapper {
@@ -114,6 +248,11 @@
       grid-template-columns: repeat(3, 1fr);
       height: 76vh;
       width: 100%;
+    }
+    &--second-square-wrapper {
+      left: unset;
+      top: 0;
+      right: 0;
     }
     &--first-square-item,
     &--second-square-item {
@@ -153,12 +292,6 @@
 
         @include squaresAnimation($animations, fadeInOut);
       }
-    }
-
-    &--second-square-wrapper {
-      left: unset;
-      top: 0;
-      right: 0;
     }
 
     &--second-square-item {

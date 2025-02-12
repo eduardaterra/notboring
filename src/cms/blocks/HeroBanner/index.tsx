@@ -67,20 +67,35 @@ export default function HeroBanner({ video }: Readonly<HeroBannerProps>) {
           isExpanded && "expanded"
         )}
       >
-        <div className={clsx("hero-banner--video", isExpanded && "expanded")}>
-          {typeof video !== "number" && video.url ? (
-            <video
-              autoPlay
-              loop
-              muted
-              preload="auto"
+        <div className="hero-banner--video">
+          <div
+            className={clsx(
+              "hero-banner--video-wrapper",
+              isExpanded && "expanded"
+            )}
+          >
+            {typeof video !== "number" && video.url ? (
+              <video
+                autoPlay
+                loop
+                muted
+                preload="auto"
 
-              // muted={!isExpanded}
-            >
-              <source src={video.url} type="video/mp4" />
-            </video>
-          ) : null}
+                // muted={!isExpanded}
+              >
+                <source src={video.url} type="video/mp4" />
+              </video>
+            ) : null}
+          </div>
+          <div
+            className={clsx("hero-banner--play-icon", isExpanded && "hidden")}
+          >
+            <div className="hero-banner--play-icon-wrapper">
+              <Image src="/play.svg" alt="play icon" fill />
+            </div>
+          </div>
         </div>
+
         <button
           className={clsx(
             "hero-banner--video-close-btn",
