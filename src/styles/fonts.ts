@@ -39,7 +39,7 @@ export const fontSecondary = localFont({
       style: "light",
     },
     {
-      path: "./localFonts/CabinetGrotesk-ExtraLight.woff2",
+      path: "./localFonts/CabinetGrotesk-Extralight.woff2",
       weight: "200",
       style: "extralight",
     },
