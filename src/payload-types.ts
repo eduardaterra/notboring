@@ -14,7 +14,6 @@ export interface Config {
     users: User;
     pages: Page;
     media: Media;
-    lp: Lp;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -24,7 +23,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    lp: LpSelect<false> | LpSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -85,95 +83,67 @@ export interface User {
 export interface Page {
   id: number;
   name: string;
-  blocks?:
-    | (
-        | {
-            video: number | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero-banner';
-          }
-        | {
-            title: string;
-            description: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'about';
-          }
-        | {
-            title: string;
-            description: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            partnersLogo?:
-              | {
-                  logo: number | Media;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'partners';
-          }
-        | {
-            text: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            offices?:
-              | {
-                  officeImage: number | Media;
-                  city: string;
-                  address: string;
-                  phoneNumber: string;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contacts';
-          }
-      )[]
-    | null;
+  blocks?: (About | Contacts | HeroBanner | Partners)[] | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "About".
+ */
+export interface About {
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'about';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contacts".
+ */
+export interface Contacts {
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  offices?:
+    | {
+        officeImage: number | Media;
+        city: string;
+        address: string;
+        phoneNumber: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contacts';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -196,13 +166,44 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lp".
+ * via the `definition` "HeroBanner".
  */
-export interface Lp {
-  id: number;
+export interface HeroBanner {
+  video: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'herobanner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Partners".
+ */
+export interface Partners {
   title: string;
-  updatedAt: string;
-  createdAt: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  partnersLogo?:
+    | {
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partners';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -222,10 +223,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'lp';
-        value: number | Lp;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -293,54 +290,66 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        'hero-banner'?:
-          | T
-          | {
-              video?: T;
-              id?: T;
-              blockName?: T;
-            };
-        about?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              id?: T;
-              blockName?: T;
-            };
-        partners?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              partnersLogo?:
-                | T
-                | {
-                    logo?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        contacts?:
-          | T
-          | {
-              text?: T;
-              offices?:
-                | T
-                | {
-                    officeImage?: T;
-                    city?: T;
-                    address?: T;
-                    phoneNumber?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        about?: T | AboutSelect<T>;
+        contacts?: T | ContactsSelect<T>;
+        herobanner?: T | HeroBannerSelect<T>;
+        partners?: T | PartnersSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "About_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  text?: T;
+  offices?:
+    | T
+    | {
+        officeImage?: T;
+        city?: T;
+        address?: T;
+        phoneNumber?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBanner_select".
+ */
+export interface HeroBannerSelect<T extends boolean = true> {
+  video?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  partnersLogo?:
+    | T
+    | {
+        logo?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -359,15 +368,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lp_select".
- */
-export interface LpSelect<T extends boolean = true> {
-  title?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

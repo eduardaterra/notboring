@@ -1,5 +1,8 @@
 import type { CollectionConfig } from "payload";
-import { HeroBanner, About, Partners, Contacts } from "./blocks";
+import About from "../blocks/About/block";
+import Contacts from "../blocks/Contacts/block";
+import HeroBanner from "../blocks/HeroBanner/block";
+import Partners from "../blocks/Partners/block";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -12,7 +15,7 @@ export const Pages: CollectionConfig = {
     {
       name: "blocks",
       type: "blocks",
-      blocks: [HeroBanner, About, Partners, Contacts],
+      blocks: [About, Contacts, HeroBanner, Partners],
     },
   ],
 };

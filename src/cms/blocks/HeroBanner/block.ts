@@ -1,7 +1,8 @@
 import type { Block } from "payload";
 
 const HeroBanner: Block = {
-  slug: "hero-banner",
+  slug: "herobanner",
+  interfaceName: "HeroBanner",
   fields: [
     {
       type: "relationship",

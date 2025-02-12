@@ -2,6 +2,7 @@ import type { Block } from "payload";
 
 const Contacts: Block = {
   slug: "contacts",
+  interfaceName: "Contacts",
   fields: [
     {
       type: "richText",

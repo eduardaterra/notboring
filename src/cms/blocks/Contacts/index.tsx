@@ -6,27 +6,24 @@ import OfficeItem from "./OfficeItem";
 import ContactForm from "./ContactForm";
 
 import "./styles.scss";
+import { Contacts as IContacts } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
-export interface ContactsProps extends HTMLAttributes<HTMLDivElement> {
-  offices: OfficeItemProps[];
-}
+type ContactsProps = HTMLAttributes<HTMLDivElement> & IContacts;
 
-export default function Contacts({ offices }: Readonly<ContactsProps>) {
+export default function Contacts({ offices, text }: Readonly<ContactsProps>) {
   const [openForm, setOpenForm] = useState(false);
   return (
     <div className="contacts--container">
       <div className="contacts--cta-container">
-        <span className="contacts--text">
-          If you have ideas for your brand, your business, or the world at
-          large, we’re here to listen and collaborate.
-        </span>
+        <RichText data={text} className="contacts--text" />
         <Button variant="red" onClick={() => setOpenForm(!openForm)}>
           Let&apos;s talk!
         </Button>
       </div>
       <div className="contacts--offices-container">
-        {offices.map((office) => (
-          <OfficeItem key={office.city} {...office} />
+        {offices?.map((office) => (
+          <OfficeItem key={office.city} {...(office as OfficeItemProps)} />
         ))}
       </div>
       <ContactForm openForm={openForm} setOpenForm={setOpenForm} />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fontPrimary } from "@/app/fonts";
+import { fontPrimary } from "@/styles/fonts";
 import "@/styles/global.scss";
 
 export const metadata: Metadata = {
@@ -13,6 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link
+        rel="preload"
+        href={process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000/"}
+      />
       <body className={`${fontPrimary.variable}`}>{children}</body>
     </html>
   );

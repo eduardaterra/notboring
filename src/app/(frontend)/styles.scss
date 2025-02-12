@@ -6,11 +6,5 @@
     align-items: center;
     justify-content: center;
     background-color: $principal-black;
-    @include desktop {
-      padding: 0 2rem;
-    }
-    @include mobile {
-      padding: 0 1.5rem;
-    }
   }
 }

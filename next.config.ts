@@ -4,6 +4,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+      },
+    ],
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles/")],
     prependData: `@use './src/styles/mixins' as *;

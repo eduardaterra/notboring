@@ -5,10 +5,11 @@
     justify-content: center;
     @include desktop {
       flex-direction: row;
-      padding: 120px 0 88px;
+      padding: 120px 2rem 88px;
       gap: 27px;
     }
     @include mobile {
+      padding: 0 1.5rem;
       flex-direction: column;
     }
   }

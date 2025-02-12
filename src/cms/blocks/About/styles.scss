@@ -8,10 +8,10 @@
     border-bottom: 1px solid $black-900;
     gap: 1.75rem;
     @include desktop {
-      padding: 88px 0;
+      padding: 88px 2rem;
     }
     @include mobile {
-      padding: 56px 0;
+      padding: 56px 1.5rem;
     }
   }
 

@@ -1,8 +1,11 @@
 "use client";
+import { HTMLAttributes, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
-import { HTMLAttributes, useState } from "react";
+import { HeroBanner as IHeroBanner } from "@/payload-types";
 import "./styles.scss";
+
+type HeroBannerProps = IHeroBanner & HTMLAttributes<HTMLDivElement>;
 
 const createSquares = (quantity: number, visible: boolean, position: string) =>
   Array.from({ length: quantity }, (_, i) => (
@@ -15,9 +18,7 @@ const createSquares = (quantity: number, visible: boolean, position: string) =>
     />
   ));
 
-export default function HeroBanner({
-  ...props
-}: Readonly<HTMLAttributes<HTMLDivElement>>) {
+export default function HeroBanner({ video }: Readonly<HeroBannerProps>) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const firstArray = createSquares(12, isExpanded, "first");
@@ -27,7 +28,6 @@ export default function HeroBanner({
     <div
       className="hero-banner--container"
       onClick={() => setIsExpanded(!isExpanded)}
-      {...props}
     >
       <div
         className={clsx("hero-banner--logo-wrapper", isExpanded && "hidden")}
@@ -67,11 +67,27 @@ export default function HeroBanner({
           isExpanded && "expanded"
         )}
       >
-        <div
-          className={clsx("hero-banner--video", isExpanded && "expanded")}
-        >
-          <div className="center"></div>
+        <div className={clsx("hero-banner--video", isExpanded && "expanded")}>
+          {typeof video !== "number" && video.url ? (
+            <video
+              autoPlay
+              loop
+              muted
+              // muted={!isExpanded}
+            >
+              <source src={video.url} type="video/mp4" />
+            </video>
+          ) : null}
         </div>
+        <button
+          className={clsx(
+            "hero-banner--video-close-btn",
+            isExpanded && "expanded"
+          )}
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <Image src="/close.svg" alt="close icon" fill />
+        </button>
       </div>
     </div>
   );

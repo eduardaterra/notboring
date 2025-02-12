@@ -1,16 +1,18 @@
 // storage-adapter-import-placeholder
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import {
+  FixedToolbarFeature,
+  lexicalEditor,
+} from "@payloadcms/richtext-lexical";
 import { gcsStorage } from "@payloadcms/storage-gcs";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "@/collections/Users";
-import { Media } from "@/collections/Media";
-import { Pages } from "@/collections/Pages";
-import { LP } from "./collections/LP";
+import { Users } from "@/cms/collections/Users";
+import { Media } from "@/cms/collections/Media";
+import { Pages } from "@/cms/collections/Pages";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,9 +24,15 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Pages, Media, LP],
-  editor: lexicalEditor(),
+  collections: [Users, Pages, Media],
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      FixedToolbarFeature(),
+    ],
+  }),
   secret: process.env.PAYLOAD_SECRET ?? "",
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },

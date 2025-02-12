@@ -2,6 +2,7 @@ import type { Block } from "payload";
 
 const Partners: Block = {
   slug: "partners",
+  interfaceName: "Partners",
   fields: [
     { type: "text", name: "title", required: true },
     { type: "richText", name: "description", required: true },

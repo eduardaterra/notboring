@@ -1,18 +1,20 @@
-import Contacts from "@/modules/Contacts";
-import Partners from "@/modules/Partners";
-import HeroBanner from "@/modules/HeroBanner";
-import About from "@/modules/About";
-import offices from "@/mocks/offices.mock";
 import "./styles.scss";
+import RenderPageBlocks from "@/cms/components/RenderPageBlocks";
+import payload from "@/clients/payloadClient";
 
-export default function Home() {
+export default async function Home() {
+  const cms = await payload();
+  const homeContent = await cms.findByID({
+    collection: "pages",
+    id: "1",
+  });
+
+  console.log(homeContent);
+
   return (
     <main>
-      <HeroBanner />
       <div className="home--content-container">
-        <About />
-        <Partners />
-        <Contacts offices={offices} />
+        <RenderPageBlocks blocks={homeContent.blocks} />
       </div>
     </main>
   );
