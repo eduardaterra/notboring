@@ -1,0 +1,28 @@
+{
+  "id": "hero_banner",
+  "type": "SharedSlice",
+  "name": "HeroBanner",
+  "description": "HeroBanner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Link",
+          "config": {
+            "label": "video",
+            "placeholder": "select the video media",
+            "select": "media",
+            "allowText": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

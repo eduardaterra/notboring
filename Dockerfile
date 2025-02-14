@@ -1,11 +1,5 @@
 FROM node:22.12.0-alpine AS base
 
-ARG DATABASE_URI
-ARG PAYLOAD_SECRET
-ARG GCS_BUCKET
-ARG GCS_PROJECT_ID
-ARG PAYLOAD_CONFIG_PATH
-
 FROM base AS deps
 
 RUN apk add --no-cache libc6-compat

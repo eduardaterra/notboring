@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "cow",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Nulla Lorem nostrud ad ullamco ea tempor minim exercitation ipsum tempor. Est quis nisi anim adipisicing cillum fugiat incididunt occaecat et ex dolore."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

@@ -1,0 +1,21 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"video": {
+				"__TYPE__": "LinkContent",
+				"key": "2fba4a02-e8f4-4c47-bd6f-ec7d24bd1a07",
+				"value": {
+					"__TYPE__": "FileLink",
+					"id": "mock_Media_link",
+					"kind": "file",
+					"name": "mock_name",
+					"url": "https://source.unsplash.com/daily",
+					"size": "0"
+				}
+			}
+		},
+		"items": []
+	}
+]

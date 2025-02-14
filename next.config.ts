@@ -1,4 +1,3 @@
-import { withPayload } from "@payloadcms/next/withPayload";
 import path from "path";
 import type { NextConfig } from "next";
 
@@ -12,6 +11,7 @@ const nextConfig: NextConfig = {
         hostname: "localhost",
         port: "3000",
       },
+      { protocol: "https", hostname: "images.prismic.io" },
     ],
   },
   sassOptions: {
@@ -24,4 +24,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(nextConfig);
+export default nextConfig;

@@ -1,24 +1,17 @@
-import RenderPageBlocks from "@/cms/components/RenderPageBlocks";
-import payload from "@/clients/payloadClient";
+import { SliceZone } from "@prismicio/react";
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 import "./styles.scss";
 
 export default async function Home() {
-  const cms = await payload();
-  const homeContent = await cms.findByID({
-    collection: "pages",
-    id: "1",
-  });
-
-  console.log(
-    process.env.DATABASE_URI,
-    process.env.PAYLOAD_SECRET,
-    "@@@@@@@@@@@@@@@@@@@@@@"
-  );
-
+  const prismic = createClient();
+  const {
+    data: { slices },
+  } = await prismic.getByUID("landing_page", "first-lp");
   return (
     <main>
       <div className="home--content-container">
-        <RenderPageBlocks blocks={homeContent.blocks} />
+        <SliceZone slices={slices} components={components} />
       </div>
     </main>
   );
