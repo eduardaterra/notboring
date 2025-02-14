@@ -10,6 +10,7 @@
     "generate": "payload generate:importmap"
   },
   "dependencies": {
+    "@libsql/client": "^0.14.0",
     "@payloadcms/db-sqlite": "^3.20.0",
     "@payloadcms/next": "^3.20.0",
     "@payloadcms/payload-cloud": "^3.20.0",
@@ -17,6 +18,7 @@
     "@payloadcms/storage-gcs": "^3.20.0",
     "clsx": "^2.1.1",
     "graphql": "^16.10.0",
+    "libsql": "^0.5.0-pre.6",
     "next": "15.1.4",
     "payload": "^3.20.0",
     "react": "^19.0.0",

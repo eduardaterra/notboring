@@ -1,6 +1,6 @@
-import "./styles.scss";
 import RenderPageBlocks from "@/cms/components/RenderPageBlocks";
 import payload from "@/clients/payloadClient";
+import "./styles.scss";
 
 export default async function Home() {
   const cms = await payload();
@@ -8,8 +8,6 @@ export default async function Home() {
     collection: "pages",
     id: "1",
   });
-
-  console.log(homeContent);
 
   return (
     <main>
