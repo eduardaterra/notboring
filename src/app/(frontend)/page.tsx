@@ -9,6 +9,12 @@ export default async function Home() {
     id: "1",
   });
 
+  console.log(
+    process.env.DATABASE_URI,
+    process.env.PAYLOAD_SECRET,
+    "@@@@@@@@@@@@@@@@@@@@@@"
+  );
+
   return (
     <main>
       <div className="home--content-container">
