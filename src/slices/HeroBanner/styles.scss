@@ -65,6 +65,19 @@
     @include mobile {
       align-items: flex-end;
       margin-bottom: 58px;
+      background-color: $principal-black;
+      transition:
+        width 0.5s ease-in-out,
+        height 0.5s ease-in-out;
+      &.expanded {
+        align-items: center;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 100dvh;
+      }
     }
   }
   &--video {
@@ -82,7 +95,9 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    transition: filter 0.5s ease-in-out;
+    transition:
+      filter 0.5s ease-in-out,
+      height 0.5s ease-in-out;
     overflow: hidden;
     filter: brightness(0.5);
     &.expanded {
@@ -95,6 +110,11 @@
     }
     @include mobile {
       height: 400px;
+      video {
+        .expanded & {
+          max-width: 100%;
+        }
+      }
     }
   }
   &--video-close-btn {

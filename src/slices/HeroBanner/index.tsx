@@ -1,10 +1,11 @@
 "use client";
-import { HTMLAttributes, useState } from "react";
+import { type HTMLAttributes, useState } from "react";
 import { SliceComponentProps } from "@prismicio/react";
 import { Content } from "@prismicio/client";
 import Image from "next/image";
 import clsx from "clsx";
 import "./styles.scss";
+import Video from "./Video";
 
 type HeroBannerProps = SliceComponentProps<Content.HeroBannerSlice> &
   HTMLAttributes<HTMLDivElement>;
@@ -33,7 +34,9 @@ export default function HeroBanner({
   return (
     <div
       className="hero-banner--container"
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={() => {
+        setIsExpanded(!isExpanded);
+      }}
     >
       <div
         className={clsx("hero-banner--logo-wrapper", isExpanded && "hidden")}
@@ -67,52 +70,11 @@ export default function HeroBanner({
           {...secondArray}
         </div>
       </div>
-      <div
-        className={clsx(
-          "hero-banner--video-container",
-          isExpanded && "expanded"
-        )}
-      >
-        <div className="hero-banner--video">
-          <div
-            className={clsx(
-              "hero-banner--video-wrapper",
-              isExpanded && "expanded"
-            )}
-          >
-            {video.link_type === "Media" ? (
-              <video
-                autoPlay
-                loop
-                muted
-                preload="auto"
-                playsInline={!isExpanded}
-                controls={isExpanded}
-                // muted={!isExpanded}
-              >
-                <source src={video.url} type="video/mp4" />
-              </video>
-            ) : null}
-          </div>
-          <div
-            className={clsx("hero-banner--play-icon", isExpanded && "hidden")}
-          >
-            <div className="hero-banner--play-icon-wrapper">
-              <Image src="/play.svg" alt="play icon" fill />
-            </div>
-          </div>
-        </div>
-
-        <button
-          className={clsx(
-            "hero-banner--video-close-btn",
-            isExpanded && "expanded"
-          )}
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          <Image src="/close.svg" alt="close icon" fill />
-        </button>
-      </div>
+      <Video
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
+        video={video}
+      />
     </div>
   );
 }
