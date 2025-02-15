@@ -1,7 +1,7 @@
+import { type HTMLAttributes } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { type Content } from "@prismicio/client";
-import { type HTMLAttributes } from "react";
 import "./styles.scss";
 
 interface VideoProps extends HTMLAttributes<HTMLDivElement> {
@@ -15,9 +15,6 @@ export default function Video({
   isExpanded,
   setIsExpanded,
 }: Readonly<VideoProps>) {
-  function handleVideoClick() {
-    window.alert("videoClicked");
-  }
   return (
     <div
       className={clsx("hero-banner--video-container", isExpanded && "expanded")}
@@ -34,9 +31,8 @@ export default function Video({
               autoPlay
               loop
               preload="auto"
-              playsInline
-              onClick={handleVideoClick}
-              // ref={videoRef}
+              playsInline={!isExpanded}
+              controls={isExpanded}
               muted={!isExpanded}
             >
               <source src={video.url} type="video/mp4" />

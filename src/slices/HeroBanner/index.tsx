@@ -1,11 +1,11 @@
 "use client";
-import { type HTMLAttributes, useState } from "react";
-import { SliceComponentProps } from "@prismicio/react";
-import { Content } from "@prismicio/client";
 import Image from "next/image";
 import clsx from "clsx";
-import "./styles.scss";
+import { type HTMLAttributes, useState } from "react";
+import { type SliceComponentProps } from "@prismicio/react";
+import { type Content } from "@prismicio/client";
 import Video from "./Video";
+import "./styles.scss";
 
 type HeroBannerProps = SliceComponentProps<Content.HeroBannerSlice> &
   HTMLAttributes<HTMLDivElement>;
