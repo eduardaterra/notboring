@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "payload generate:importmap",
-    "slicemachine": "start-slicemachine"
+    "slicemachine": "start-slicemachine",
+    "docker:build": "sudo docker build -t notboring --platform linux/amd64 .",
+    "docker:run": "sudo docker run -p 3000:3000 notboring",
+    "docker:push": "sudo docker push gcr.io/notboring-447413/notboring",
+    "gcloud:deploy": "gcloud run deploy --image gcr.io/notboring-447413/notboring --platform managed --region us-east1 --allow-unauthenticated"
   },
   "dependencies": {
     "@prismicio/client": "^7.16.0",

@@ -70,6 +70,7 @@
   &--video {
     position: relative;
     width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,7 +137,9 @@
     &--first-square-wrapper,
     &--second-square-wrapper {
       position: absolute;
+      height: 234px;
       width: fit-content;
+      min-width: 175px;
       z-index: 1000;
       bottom: 0;
       left: 0;
@@ -234,12 +237,13 @@
     &--second-square-wrapper {
       position: absolute;
       width: fit-content;
+      min-width: 547px;
       height: 76vh;
       z-index: 1000;
       bottom: 0;
       left: 0;
       opacity: 1;
-      overflow: hidden;
+      overflow: visible;
     }
     &--first-square-container,
     &--second-square-container {
@@ -248,6 +252,7 @@
       grid-template-columns: repeat(3, 1fr);
       height: 76vh;
       width: 100%;
+      max-width: 100%;
     }
     &--second-square-wrapper {
       left: unset;

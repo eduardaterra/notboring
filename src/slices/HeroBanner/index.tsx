@@ -86,7 +86,8 @@ export default function HeroBanner({
                 loop
                 muted
                 preload="auto"
-
+                playsInline={!isExpanded}
+                controls={isExpanded}
                 // muted={!isExpanded}
               >
                 <source src={video.url} type="video/mp4" />
