@@ -7,6 +7,7 @@ import ContactForm from "./ContactForm";
 import "./styles.scss";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { Content } from "@prismicio/client";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 type ContactsProps = HTMLAttributes<HTMLDivElement> &
   SliceComponentProps<Content.ContactSlice>;
@@ -16,6 +17,7 @@ export default function Contacts({
     primary: { description, offices },
   },
 }: Readonly<ContactsProps>) {
+  const { blockScroll } = useScrollLock();
   const [openForm, setOpenForm] = useState(false);
   return (
     <div className="contacts--container">
@@ -23,7 +25,13 @@ export default function Contacts({
         <span className="contacts--text">
           <PrismicRichText field={description} />
         </span>
-        <Button variant="red" onClick={() => setOpenForm(!openForm)}>
+        <Button
+          variant="red"
+          onClick={() => {
+            setOpenForm(true);
+            blockScroll();
+          }}
+        >
           Let&apos;s talk!
         </Button>
       </div>

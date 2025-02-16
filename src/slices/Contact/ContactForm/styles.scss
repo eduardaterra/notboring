@@ -2,7 +2,7 @@
   &--overlay {
     display: flex;
     opacity: 0;
-  visibility: hidden;
+    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -11,12 +11,14 @@
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
     justify-content: flex-end;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; 
-    &.open{
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+    &.open {
       visibility: visible;
       opacity: 1;
     }
-
+    overscroll-behavior: contain;
   }
   &--container {
     position: relative;

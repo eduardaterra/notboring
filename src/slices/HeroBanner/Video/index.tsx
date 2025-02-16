@@ -7,17 +7,17 @@ import "./styles.scss";
 interface VideoProps extends HTMLAttributes<HTMLDivElement> {
   video: Content.HeroBannerSliceDefaultPrimary["video"];
   isExpanded: boolean;
-  setIsExpanded: (val: boolean) => void;
 }
 
-export default function Video({
-  video,
-  isExpanded,
-  setIsExpanded,
-}: Readonly<VideoProps>) {
+export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
   return (
     <div
       className={clsx("hero-banner--video-container", isExpanded && "expanded")}
+      onClick={(e) => {
+        if (isExpanded) {
+          e.stopPropagation();
+        }
+      }}
     >
       <div className="hero-banner--video">
         <div
@@ -28,11 +28,11 @@ export default function Video({
         >
           {video.link_type === "Media" ? (
             <video
+              controls={isExpanded}
               autoPlay
               loop
               preload="auto"
               playsInline={!isExpanded}
-              controls={isExpanded}
               muted={!isExpanded}
             >
               <source src={video.url} type="video/mp4" />
@@ -45,16 +45,6 @@ export default function Video({
           </div>
         </div>
       </div>
-
-      <button
-        className={clsx(
-          "hero-banner--video-close-btn",
-          isExpanded && "expanded"
-        )}
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        <Image src="/close.svg" alt="close icon" fill />
-      </button>
     </div>
   );
 }

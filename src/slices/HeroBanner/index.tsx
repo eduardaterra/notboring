@@ -6,6 +6,7 @@ import { type SliceComponentProps } from "@prismicio/react";
 import { type Content } from "@prismicio/client";
 import Video from "./Video";
 import "./styles.scss";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 type HeroBannerProps = SliceComponentProps<Content.HeroBannerSlice> &
   HTMLAttributes<HTMLDivElement>;
@@ -27,6 +28,7 @@ export default function HeroBanner({
   },
 }: Readonly<HeroBannerProps>) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { blockScroll, allowScroll } = useScrollLock();
 
   const firstArray = createSquares(12, isExpanded, "first");
   const secondArray = createSquares(12, isExpanded, "second");
@@ -35,7 +37,10 @@ export default function HeroBanner({
     <div
       className="hero-banner--container"
       onClick={() => {
-        setIsExpanded(!isExpanded);
+        if (!isExpanded) {
+          setIsExpanded(true);
+          blockScroll();
+        }
       }}
     >
       <div
@@ -50,6 +55,7 @@ export default function HeroBanner({
           />
         </div>
       </div>
+
       <div
         className={clsx(
           "hero-banner--first-square-wrapper",
@@ -69,12 +75,20 @@ export default function HeroBanner({
         <div className="hero-banner--second-square-container">
           {...secondArray}
         </div>
+        <button
+          className={clsx(
+            "hero-banner--video-close-btn",
+            isExpanded && "expanded"
+          )}
+          onClick={() => {
+            allowScroll();
+            setIsExpanded(false);
+          }}
+        >
+          <Image src="/close.svg" alt="close icon" fill />
+        </button>
       </div>
-      <Video
-        isExpanded={isExpanded}
-        setIsExpanded={setIsExpanded}
-        video={video}
-      />
+      <Video isExpanded={isExpanded} video={video} />
     </div>
   );
 }

@@ -1,4 +1,24 @@
 .hero-banner {
+  &--play-icon {
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+  &--play-icon-wrapper {
+    position: relative;
+    @include desktop {
+      width: 40px;
+      height: 60px;
+    }
+    @include mobile {
+      width: 21px;
+      height: 32px;
+    }
+  }
   &--video-container {
     display: flex;
     align-items: center;
@@ -13,6 +33,7 @@
         width 0.5s ease-in-out,
         height 0.5s ease-in-out;
       &.expanded {
+        z-index: 100;
         position: fixed;
         top: 0;
         right: 0;
@@ -73,42 +94,6 @@
           max-width: 100%;
         }
       }
-    }
-  }
-  &--video-close-btn {
-    all: unset;
-    cursor: pointer;
-    position: absolute;
-    padding: 4px;
-    top: 1.75rem;
-    right: 1.75rem;
-    width: 1rem;
-    height: 1rem;
-    opacity: 0;
-    transition: opacity 0.7s ease-in-out;
-
-    &.expanded {
-      opacity: 1;
-    }
-  }
-  &--play-icon {
-    position: absolute;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-
-    &.hidden {
-      opacity: 0;
-    }
-  }
-  &--play-icon-wrapper {
-    position: relative;
-    @include desktop {
-      width: 40px;
-      height: 60px;
-    }
-    @include mobile {
-      width: 21px;
-      height: 32px;
     }
   }
 }
