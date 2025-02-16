@@ -61,12 +61,17 @@
     @include mobile {
       padding: 0 1.5rem;
     }
-    button {
-      @include desktop {
-        width: fit-content !important;
-      }
-      @include mobile {
-        width: 100% !important;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      button {
+        @include desktop {
+          width: fit-content !important;
+        }
+        @include mobile {
+          width: 100% !important;
+        }
       }
     }
   }

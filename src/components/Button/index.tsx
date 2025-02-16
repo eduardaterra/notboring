@@ -1,8 +1,8 @@
-import type { HTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
 import { fontSecondary } from "@/styles/fonts";
 import "./styles.scss";
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: "red" | "black";
 }
 
