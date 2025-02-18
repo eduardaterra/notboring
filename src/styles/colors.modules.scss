@@ -17,6 +17,9 @@ $black-300: #b0b0b0;
 $black-200: #dddddd;
 $black-100: #f3f3f3;
 
+//green colors
+$green-100: #219653;
+
 :export {
   principalBlue: $principal-blue;
   principalBlack: $principal-black;
@@ -33,4 +36,5 @@ $black-100: #f3f3f3;
   black-300: $black-300;
   black-200: $black-200;
   black-100: $black-100;
+  green-100: $green-100;
 }

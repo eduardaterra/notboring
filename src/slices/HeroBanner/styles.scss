@@ -42,6 +42,26 @@
     }
   }
 
+  &--video-close-btn {
+    display: none;
+    all: unset;
+    cursor: pointer;
+    position: fixed;
+    z-index: 101;
+    padding: 4px;
+    top: 1.75rem;
+    right: 1.75rem;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+
+    &.expanded {
+      opacity: 1;
+      display: unset;
+    }
+  }
+
   @include mobile {
     &--first-square-wrapper,
     &--second-square-wrapper {
@@ -65,7 +85,7 @@
       position: relative;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      height: 234px;
+      height: 235px;
       width: 100%;
     }
     &--first-square-item,
@@ -138,26 +158,6 @@
 
         @include squaresAnimation($animations, fadeInOut);
       }
-    }
-  }
-
-  &--video-close-btn {
-    display: none;
-    all: unset;
-    cursor: pointer;
-    position: fixed;
-    z-index: 101;
-    padding: 4px;
-    top: 1.75rem;
-    right: 1.75rem;
-    width: 1rem;
-    height: 1rem;
-    opacity: 0;
-    transition: opacity 0.7s ease-in-out;
-
-    &.expanded {
-      opacity: 1;
-      display: unset;
     }
   }
 

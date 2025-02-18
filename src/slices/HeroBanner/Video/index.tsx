@@ -28,7 +28,6 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
         >
           {video.link_type === "Media" ? (
             <video
-              controls={isExpanded}
               autoPlay
               loop
               preload="auto"

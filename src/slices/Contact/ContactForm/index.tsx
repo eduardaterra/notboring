@@ -1,15 +1,22 @@
-import { type FormEvent, useReducer, type HTMLAttributes } from "react";
+import {
+  type FormEvent,
+  type JSX,
+  type HTMLAttributes,
+  useReducer,
+  useState,
+} from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Input from "@/components/Input";
 import TextArea from "@/components/TextArea";
 import Button from "@/components/Button";
 import { useScrollLock } from "@/hooks/useScrollLock";
-import "./styles.scss";
 import {
   ContactsErrorDispatcher,
   ContactsService,
 } from "@/services/ContactsService";
+
+import "./styles.scss";
 
 const initialState = {
   name: { error: false },
@@ -18,15 +25,16 @@ const initialState = {
   message: { error: false },
 };
 
-const handleSubmit = async (
-  e: FormEvent<HTMLFormElement>,
-  dispatchError: ContactsErrorDispatcher
-) => {
-  e.preventDefault();
-  const service = new ContactsService(new FormData(e.currentTarget));
-  const res = await service.submit(dispatchError);
-
-  window.alert(res.success);
+const btnContent: Record<FormStatus, JSX.Element | string> = {
+  default: "Submit",
+  success: (
+    <>
+      <Image src="/check.svg" height={24} width={24} alt="check sign" />
+      Message Received!
+    </>
+  ),
+  loading: "Loading...",
+  error: "Error! Try again",
 };
 
 function reducer(
@@ -50,6 +58,8 @@ function reducer(
   }
 }
 
+type FormStatus = "default" | "loading" | "success" | "error";
+
 interface ContactFormProps extends HTMLAttributes<HTMLDivElement> {
   openForm: boolean;
   setOpenForm: (value: boolean) => void;
@@ -62,6 +72,28 @@ export default function ContactForm({
 }: Readonly<ContactFormProps>) {
   const { allowScroll } = useScrollLock();
   const [state, dispatchError] = useReducer(reducer, initialState);
+  const [formStatus, setFormStatus] = useState<
+    "default" | "loading" | "success" | "error"
+  >("success");
+
+  const handleSubmit = async (
+    e: FormEvent<HTMLFormElement>,
+    dispatchError: ContactsErrorDispatcher
+  ) => {
+    setFormStatus("loading");
+    e.preventDefault();
+    const service = new ContactsService(new FormData(e.currentTarget));
+    const res = await service.submit(dispatchError);
+
+    if (!res.success) {
+      setFormStatus("error"); // TODO: uncomment when error BTN is ready
+      setTimeout(() => setFormStatus("default"), 1400);
+      return;
+    }
+
+    setFormStatus("success");
+    setTimeout(() => setFormStatus("default"), 1400);
+  };
 
   return (
     <div
@@ -142,11 +174,12 @@ export default function ContactForm({
             />
             <Button
               variant="black"
+              className={clsx(`contact-form--submit-button`, formStatus)}
               type="submit"
               form="contact-form"
               value="submit"
             >
-              Submit
+              {btnContent[formStatus]}
             </Button>
           </form>
         </div>
