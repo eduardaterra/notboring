@@ -33,8 +33,24 @@ const btnContent: Record<FormStatus, JSX.Element | string> = {
       Message Received!
     </>
   ),
-  loading: "Loading...",
-  error: "Error! Try again",
+  loading: (
+    <>
+      <Image
+        src="/loading.svg"
+        className="spinner"
+        height={24}
+        width={24}
+        alt="loading sign"
+      />
+      loading...
+    </>
+  ),
+  error: (
+    <>
+      <Image src="/alert.svg" height={20} width={20} alt="alert sign" />
+      Sorry, something wrong happened.
+    </>
+  ),
 };
 
 function reducer(
@@ -74,7 +90,7 @@ export default function ContactForm({
   const [state, dispatchError] = useReducer(reducer, initialState);
   const [formStatus, setFormStatus] = useState<
     "default" | "loading" | "success" | "error"
-  >("success");
+  >("default");
 
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>,
@@ -86,13 +102,14 @@ export default function ContactForm({
     const res = await service.submit(dispatchError);
 
     if (!res.success) {
-      setFormStatus("error"); // TODO: uncomment when error BTN is ready
-      setTimeout(() => setFormStatus("default"), 1400);
-      return;
+      setFormStatus("error");
+      const errorTimeout = setTimeout(() => setFormStatus("default"), 1200);
+      return () => clearInterval(errorTimeout);
     }
 
     setFormStatus("success");
-    setTimeout(() => setFormStatus("default"), 1400);
+    const successTimeout = setTimeout(() => setFormStatus("default"), 1400);
+    return () => clearInterval(successTimeout);
   };
 
   return (

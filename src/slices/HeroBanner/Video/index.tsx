@@ -1,4 +1,4 @@
-import { type HTMLAttributes } from "react";
+import { useLayoutEffect, useState, type HTMLAttributes } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { type Content } from "@prismicio/client";
@@ -10,6 +10,16 @@ interface VideoProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
+  const [canLoadVideoControls, setCanLoadVideoControls] = useState(false);
+
+  useLayoutEffect(() => {
+    if (isExpanded) {
+      const timeout = setTimeout(() => setCanLoadVideoControls(true), 1300);
+      return () => clearTimeout(timeout);
+    }
+
+    setCanLoadVideoControls(false);
+  }, [isExpanded]);
   return (
     <div
       className={clsx("hero-banner--video-container", isExpanded && "expanded")}
@@ -29,6 +39,7 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
           {video.link_type === "Media" ? (
             <video
               autoPlay
+              controls={canLoadVideoControls}
               loop
               preload="auto"
               playsInline={!isExpanded}

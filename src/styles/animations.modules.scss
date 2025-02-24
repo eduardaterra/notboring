@@ -24,3 +24,18 @@
     opacity: 0;
   }
 }
+
+@keyframes scaleX {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
