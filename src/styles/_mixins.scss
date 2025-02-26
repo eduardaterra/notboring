@@ -17,3 +17,11 @@
     }
   }
 }
+
+@mixin squareAnimation($child, $delay, $origin, $animation, $duration) {
+  &:nth-child(#{$child}) {
+    transform-origin: #{$origin};
+    animation: #{$animation} #{$duration} forwards ease-in-out;
+    animation-delay: #{$delay};
+  }
+}

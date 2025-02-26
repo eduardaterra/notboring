@@ -74,7 +74,10 @@
       bottom: 0;
       left: 0;
       opacity: 1;
-      overflow: hidden;
+
+      &.hidden {
+        bottom: -35%;
+      }
     }
     &--second-square-wrapper {
       left: unset;
@@ -99,65 +102,39 @@
     &--first-square-item {
       &.default {
         opacity: 0;
-        $animations: (
-          4: 0.3s,
-          8: 0.3s,
-          10: 0.3s,
-        );
 
-        &:nth-child(11) {
-          animation-delay: 0.1s !important;
-        }
-        &:nth-child(9) {
-          animation-delay: 0.2s !important;
-        }
-        @include squaresAnimation($animations, fadeIn);
+        @include squareAnimation(4, 0.1s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(10, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
       }
 
       &.hidden {
         opacity: 0;
-        $animations: (
-          3: 1s,
-          5: 0.8s,
-          6: 0.6s,
-          7: 0.4s,
-          11: 0.2s,
-          12: 0.1s,
-        );
 
-        @include squaresAnimation($animations, fadeInOut);
+        @include squareAnimation(3, 0.3s, bottom, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(5, 0.2s, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(6, 0.3s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(7, 0.2s, right, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(11, 0.1s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(12, 0, left, scaleXAndFadeInOut, 0.6s);
       }
     }
     &--second-square-item {
       &.default {
         opacity: 0;
-        $animations: (
-          2: 0.3s,
-          6: 0.3s,
-          8: 0.3s,
-        );
 
-        &:nth-child(11) {
-          animation-delay: 0.1s !important;
-        }
-        &:nth-child(9) {
-          animation-delay: 0.2s !important;
-        }
-        @include squaresAnimation($animations, fadeIn);
+        @include squareAnimation(2, 0.1s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(6, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
       }
 
       &.hidden {
         opacity: 0;
-        $animations: (
-          3: 1s,
-          5: 0.8s,
-          6: 0.6s,
-          7: 0.4s,
-          11: 0.2s,
-          12: 0.1s,
-        );
 
-        @include squaresAnimation($animations, fadeInOut);
+        @include squareAnimation(12, 0.1s, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(6, 0.3s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(8, 0.3s, right, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(1, 0.2s, top, scaleYAndFadeInOut, 0.6s);
       }
     }
   }
@@ -192,6 +169,9 @@
     &--first-square-item,
     &--second-square-item {
       width: 100%;
+      display: inline-block;
+      overflow: hidden;
+      height: 100%;
       aspect-ratio: 1 / 1;
       background-color: $principal-blue;
       transition: opacity 0.2s ease-in-out;
@@ -199,68 +179,40 @@
     &--first-square-item {
       &.default {
         opacity: 0;
-        $animations: (
-          7: 0.3s,
-          9: 0.3s,
-          11: 0.3s,
-        );
-
-        &:nth-child(11) {
-          animation-delay: 0.1s !important;
-        }
-        &:nth-child(9) {
-          animation-delay: 0.2s !important;
-        }
-        @include squaresAnimation($animations, fadeIn);
+        @include squareAnimation(7, 0.2s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(9, 0.3s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(11, 0.4s, bottom, scaleYAndFadeIn, 0.5s);
       }
 
       &.hidden {
         opacity: 0;
-        $animations: (
-          3: 1s,
-          5: 0.8s,
-          6: 0.6s,
-          7: 0.4s,
-          11: 0.2s,
-          12: 0.1s,
-        );
-
-        @include squaresAnimation($animations, fadeInOut);
+        @include squareAnimation(3, 0.3s, bottom, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(5, 0.2s, right, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(6, 0.1s, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(7, 0.2s, right, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(11, 0.1s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(12, 0, left, scaleXAndFadeInOut, 0.6s);
       }
     }
 
     &--second-square-item {
       &.default {
         opacity: 0;
-        $animations: (
-          2: 0.3s,
-          6: 0.3s,
-          8: 0.3s,
-          12: 0.3s,
-        );
-
-        $index: 0;
-        @each $child, $duration in $animations {
-          $index: $index + 1;
-          &:nth-child(#{$child}) {
-            animation-delay: $index * 0.1s !important;
-          }
-        }
-        @include squaresAnimation($animations, fadeIn);
+        @include squareAnimation(2, 0s, right, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(6, 0.1s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.2s, bottom, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(12, 0.3s, left, scaleXAndFadeIn, 0.5s);
       }
 
       &.hidden {
         opacity: 0;
-        $animations: (
-          1: 0.4s,
-          2: 0.2s,
-          6: 0.6s,
-          8: 0.4s,
-          11: 0.2s,
-          12: 1s,
-        );
 
-        @include squaresAnimation($animations, fadeInOut);
+        @include squareAnimation(12, 0.1s, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(6, 0.3s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(11, 0.2s, bottom, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(8, 0.3s, right, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(1, 0.2s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(2, 0.1s, left, scaleXAndFadeInOut, 0.6s);
       }
     }
   }
