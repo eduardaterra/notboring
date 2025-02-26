@@ -1,4 +1,5 @@
 .hero-banner {
+  $hidden-animation-duration: 0.6s;
   &--container {
     width: 100%;
     display: flex;
@@ -43,8 +44,8 @@
     display: none;
     all: unset;
     cursor: pointer;
-    position: fixed;
-    z-index: 101;
+    position: absolute;
+    z-index: 1001;
     padding: 4px;
     top: 1.75rem;
     right: 1.75rem;
@@ -77,6 +78,7 @@
 
       &.hidden {
         bottom: -35%;
+        animation: controlVisibility 0.8s forwards ease;
       }
     }
     &--second-square-wrapper {
@@ -111,12 +113,48 @@
       &.hidden {
         opacity: 0;
 
-        @include squareAnimation(3, 0.3s, bottom, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(5, 0.2s, left, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(6, 0.3s, top, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(7, 0.2s, right, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(11, 0.1s, top, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(12, 0, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(
+          3,
+          0.3s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          5,
+          0.2s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          7,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.1s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          12,
+          0,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
       }
     }
     &--second-square-item {
@@ -131,10 +169,34 @@
       &.hidden {
         opacity: 0;
 
-        @include squareAnimation(12, 0.1s, left, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(6, 0.3s, top, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(8, 0.3s, right, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(1, 0.2s, top, scaleYAndFadeInOut, 0.6s);
+        @include squareAnimation(
+          12,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          8,
+          0.3s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          1,
+          0.2s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
       }
     }
   }
@@ -151,6 +213,9 @@
       left: 0;
       opacity: 1;
       overflow: visible;
+      &.hidden {
+        animation: controlVisibility 0.8s forwards ease;
+      }
     }
     &--first-square-container,
     &--second-square-container {
@@ -186,12 +251,48 @@
 
       &.hidden {
         opacity: 0;
-        @include squareAnimation(3, 0.3s, bottom, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(5, 0.2s, right, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(6, 0.1s, left, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(7, 0.2s, right, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(11, 0.1s, top, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(12, 0, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(
+          3,
+          0.3s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          5,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          7,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.1s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          12,
+          0,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
       }
     }
 
@@ -207,12 +308,48 @@
       &.hidden {
         opacity: 0;
 
-        @include squareAnimation(12, 0.1s, left, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(6, 0.3s, top, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(11, 0.2s, bottom, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(8, 0.3s, right, scaleXAndFadeInOut, 0.6s);
-        @include squareAnimation(1, 0.2s, top, scaleYAndFadeInOut, 0.6s);
-        @include squareAnimation(2, 0.1s, left, scaleXAndFadeInOut, 0.6s);
+        @include squareAnimation(
+          12,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.2s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          8,
+          0.3s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          1,
+          0.2s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          2,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
       }
     }
   }

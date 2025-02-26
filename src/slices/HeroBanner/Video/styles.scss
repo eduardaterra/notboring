@@ -68,10 +68,10 @@
         width 0.5s ease-in-out,
         height 0.5s ease-in-out;
       transform-origin: right;
-      animation: scaleX 0.5s forwards ease-in-out;
+      animation: scaleXAndFadeIn 0.8s forwards ease-in-out;
       &.expanded {
         z-index: 100;
-        position: fixed;
+        position: absolute;
         top: 0;
         right: 0;
         width: 100vw;
@@ -88,7 +88,7 @@
       &.expanded {
         align-items: center;
 
-        position: fixed;
+        position: absolute;
         top: 0;
         right: 0;
         width: 100vw;

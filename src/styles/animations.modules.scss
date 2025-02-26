@@ -80,3 +80,9 @@
     opacity: 0;
   }
 }
+
+@keyframes controlVisibility {
+  100% {
+    display: none;
+  }
+}

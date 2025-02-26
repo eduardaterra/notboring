@@ -1,4 +1,4 @@
-import { type HTMLAttributes } from "react";
+import { useLayoutEffect, useState, type HTMLAttributes } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { type Content } from "@prismicio/client";
@@ -10,6 +10,13 @@ interface VideoProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
+  const [canLoadControls, setCanLoadControls] = useState(false);
+
+  useLayoutEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    !isExpanded && setCanLoadControls(false);
+  }, [isExpanded]);
+
   return (
     <div
       className={clsx("hero-banner--video-container", isExpanded && "expanded")}
@@ -25,9 +32,17 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
             "hero-banner--video-wrapper",
             isExpanded && "expanded"
           )}
+          onClick={() => isExpanded && setCanLoadControls(true)}
         >
           {video.link_type === "Media" ? (
-            <video autoPlay loop preload="auto" playsInline muted={!isExpanded}>
+            <video
+              autoPlay
+              loop
+              preload="auto"
+              controls={canLoadControls}
+              playsInline
+              muted={!isExpanded}
+            >
               <source src={video.url} type="video/mp4" />
             </video>
           ) : null}

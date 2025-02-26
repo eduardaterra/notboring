@@ -75,19 +75,19 @@ export default function HeroBanner({
         <div className="hero-banner--second-square-container">
           {...secondArray}
         </div>
-        <button
-          className={clsx(
-            "hero-banner--video-close-btn",
-            isExpanded && "expanded"
-          )}
-          onClick={() => {
-            allowScroll();
-            setIsExpanded(false);
-          }}
-        >
-          <Image src="/close.svg" alt="close icon" fill />
-        </button>
       </div>
+      <button
+        className={clsx(
+          "hero-banner--video-close-btn",
+          isExpanded && "expanded"
+        )}
+        onClick={() => {
+          allowScroll();
+          setIsExpanded(false);
+        }}
+      >
+        <Image src="/close.svg" alt="close icon" fill />
+      </button>
       <Video isExpanded={isExpanded} video={video} />
     </div>
   );
