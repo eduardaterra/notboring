@@ -44,7 +44,7 @@
     display: none;
     all: unset;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     z-index: 1001;
     padding: 4px;
     top: 1.75rem;
@@ -60,7 +60,7 @@
 
     &.expanded {
       opacity: 1;
-      display: unset;
+      display: flex;
     }
   }
 
@@ -75,7 +75,7 @@
       bottom: 0;
       left: 0;
       opacity: 1;
-      display: unset;
+      display: flex !important;
 
       &.hidden {
         bottom: -35%;
@@ -214,7 +214,7 @@
       left: 0;
       opacity: 1;
       overflow: visible;
-      display: unset;
+      display: flex !important;
       &.hidden {
         animation: controlVisibility 0.8s forwards ease;
       }
