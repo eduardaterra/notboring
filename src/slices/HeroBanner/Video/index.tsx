@@ -13,8 +13,11 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
   const [canLoadControls, setCanLoadControls] = useState(false);
 
   useLayoutEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    !isExpanded && setCanLoadControls(false);
+    if (isExpanded) {
+      const timeout = setTimeout(() => setCanLoadControls(true), 1000);
+      return () => clearTimeout(timeout);
+    }
+    setCanLoadControls(false);
   }, [isExpanded]);
 
   return (
@@ -32,7 +35,6 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
             "hero-banner--video-wrapper",
             isExpanded && "expanded"
           )}
-          onClick={() => isExpanded && setCanLoadControls(true)}
         >
           {video.link_type === "Media" ? (
             <video
