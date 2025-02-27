@@ -2,6 +2,7 @@ import { useLayoutEffect, useState, type HTMLAttributes } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { type Content } from "@prismicio/client";
+import { validateDevice } from "@/utils/mobileUtils";
 import "./styles.scss";
 
 interface VideoProps extends HTMLAttributes<HTMLDivElement> {
@@ -11,6 +12,7 @@ interface VideoProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
   const [canLoadControls, setCanLoadControls] = useState(false);
+  const { isMobile } = validateDevice();
 
   useLayoutEffect(() => {
     if (isExpanded) {
@@ -49,7 +51,12 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
             </video>
           ) : null}
         </div>
-        <div className={clsx("hero-banner--play-icon", isExpanded && "hidden")}>
+        <div
+          className={clsx(
+            "hero-banner--play-icon",
+            isExpanded ? (isMobile ? "hidden-mobile" : "hidden") : null
+          )}
+        >
           <div className="hero-banner--play-icon-wrapper">
             <Image src="/play.svg" alt="play icon" fill />
           </div>

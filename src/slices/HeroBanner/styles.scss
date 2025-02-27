@@ -75,6 +75,7 @@
       bottom: 0;
       left: 0;
       opacity: 1;
+      display: unset;
 
       &.hidden {
         bottom: -35%;
@@ -213,6 +214,7 @@
       left: 0;
       opacity: 1;
       overflow: visible;
+      display: unset;
       &.hidden {
         animation: controlVisibility 0.8s forwards ease;
       }

@@ -4,8 +4,12 @@
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     z-index: 100;
+    display: unset;
     &.hidden {
       opacity: 0;
+    }
+    &.hidden-mobile {
+      display: none;
     }
   }
   &--play-icon-wrapper {
