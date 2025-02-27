@@ -78,7 +78,7 @@
       display: flex !important;
 
       &.hidden {
-        bottom: -35%;
+        position: fixed;
         animation: controlVisibility 0.8s forwards ease;
       }
     }
@@ -216,6 +216,7 @@
       overflow: visible;
       display: flex !important;
       &.hidden {
+        position: fixed;
         animation: controlVisibility 0.8s forwards ease;
       }
     }
