@@ -60,7 +60,7 @@
 
     &.expanded {
       opacity: 1;
-      display: flex;
+      display: flex !important;
     }
   }
 
