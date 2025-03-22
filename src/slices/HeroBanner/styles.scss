@@ -41,7 +41,7 @@
   }
 
   &--video-close-btn {
-    display: none;
+    display: none !important;
     all: unset;
     cursor: pointer;
     position: fixed;

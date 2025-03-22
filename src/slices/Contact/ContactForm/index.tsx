@@ -4,6 +4,7 @@ import {
   type HTMLAttributes,
   useReducer,
   useState,
+  useRef,
 } from "react";
 import clsx from "clsx";
 import Image from "next/image";
@@ -91,6 +92,8 @@ export default function ContactForm({
   const [formStatus, setFormStatus] = useState<
     "default" | "loading" | "success" | "error"
   >("default");
+  const formRef = useRef<HTMLFormElement>(null);
+  const isInputDisabled = formStatus !== "default";
 
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>,
@@ -103,12 +106,17 @@ export default function ContactForm({
 
     if (!res.success) {
       setFormStatus("error");
-      const errorTimeout = setTimeout(() => setFormStatus("default"), 1200);
+      const errorTimeout = setTimeout(() => setFormStatus("default"), 4000);
       return () => clearInterval(errorTimeout);
     }
 
     setFormStatus("success");
-    const successTimeout = setTimeout(() => setFormStatus("default"), 1400);
+
+    const successTimeout = setTimeout(() => {
+      setOpenForm(false);
+      setFormStatus("default");
+      formRef.current?.reset();
+    }, 3500);
     return () => clearInterval(successTimeout);
   };
 
@@ -140,6 +148,7 @@ export default function ContactForm({
             large, we’re here to listen and collaborate.
           </h3>
           <form
+            ref={formRef}
             onSubmit={(e) => {
               handleSubmit(e, dispatchError);
             }}
@@ -155,6 +164,7 @@ export default function ContactForm({
               maxLength={80}
               placeholder="Name"
               name="name"
+              disabled={isInputDisabled}
               variant={state.name.error ? "error" : "default"}
             />
             <Input
@@ -164,6 +174,7 @@ export default function ContactForm({
               }}
               type="text"
               maxLength={80}
+              disabled={isInputDisabled}
               placeholder="Company"
               name="company"
               variant={state.company.error ? "error" : "default"}
@@ -175,6 +186,7 @@ export default function ContactForm({
               }}
               type="email"
               maxLength={100}
+              disabled={isInputDisabled}
               name="email"
               placeholder="Email"
               variant={state.email.error ? "error" : "default"}
@@ -185,6 +197,7 @@ export default function ContactForm({
                   dispatchError({ type: "message", payload: { error: false } });
               }}
               name="message"
+              disabled={isInputDisabled}
               maxLength={500}
               placeholder="How can we work together?"
               variant={state.message.error ? "error" : "default"}
