@@ -1,11 +1,31 @@
 steps:
-  - name: gcr.io/cloud-builders/docker
+  # Build the image
+  - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "build",
         "-t",
-        "us-east1-docker.pkg.dev/notboring-447413/notboring/notboring:prod",
+        "us-east1-docker.pkg.dev/$PROJECT_ID/notboring/notboring:prod",
         ".",
       ]
+  # Push the image to Artifact Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["push", "us-east1-docker.pkg.dev/$PROJECT_ID/notboring/notboring:prod"]
+  # Deploy image to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "notboring",
+        "--image",
+        "us-east1-docker.pkg.dev/$PROJECT_ID/notboring/notboring:prod",
+        "--region",
+        "us-east1",
+      ]
+images:
+  - "us-east1-docker.pkg.dev/$PROJECT_ID/notboring/notboring:prod"
 options:
   logging: CLOUD_LOGGING_ONLY
