@@ -8,7 +8,7 @@
     left: 0;
     opacity: 1;
     display: flex !important;
-    height: 76vh;
+    height: 76svh;
     &.hidden {
       position: fixed;
       animation: controlVisibility 0.8s forwards ease;
@@ -20,7 +20,7 @@
       overflow: visible;
     }
     @include verticalScreen {
-      min-width: 30vw;
+      min-width: 33.6vw;
 
       z-index: 100;
     }
@@ -43,7 +43,7 @@
     width: 100%;
 
     @include desktop {
-      height: 76vh;
+      height: 76svh;
     }
     @include verticalScreen {
       height: fit-content !important;
@@ -126,13 +126,9 @@
       &.default {
         opacity: 0;
 
-        @include squareAnimation(2, 0.2s, top, scaleYAndFadeIn, 0.5s);
-        @include squareAnimation(3, 0.2s, left, scaleXAndFadeIn, 0.5s);
         @include squareAnimation(4, 0.1s, left, scaleXAndFadeIn, 0.5s);
-        @include squareAnimation(9, 0.2s, top, scaleYAndFadeIn, 0.5s);
         @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
         @include squareAnimation(10, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
-        @include squareAnimation(12, 0.2s, top, scaleYAndFadeIn, 0.5s);
       }
       &.hidden {
         opacity: 0;
@@ -188,13 +184,9 @@
       &.default {
         opacity: 0;
 
-        @include squareAnimation(1, 0.1s, top, scaleYAndFadeIn, 0.5s);
         @include squareAnimation(2, 0.1s, left, scaleXAndFadeIn, 0.5s);
         @include squareAnimation(6, 0.2s, top, scaleYAndFadeIn, 0.5s);
-        @include squareAnimation(7, 0.2s, top, scaleYAndFadeIn, 0.5s);
         @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
-        @include squareAnimation(12, 0.2s, right, scaleXAndFadeIn, 0.5s);
-        @include squareAnimation(10, 0.2s, right, scaleXAndFadeIn, 0.5s);
       }
       &.hidden {
         opacity: 0;
