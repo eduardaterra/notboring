@@ -58,7 +58,7 @@
     position: relative;
     @include desktopWithoutVerticalClass {
       width: 74.5vw;
-      height: 76svh;
+      height: 76lvh;
       background-color: $principal-black;
       transition:
         transform 0.5s ease-in-out,
@@ -114,7 +114,7 @@
       filter: brightness(1);
     }
     @include desktop {
-      height: 76svh;
+      height: 76lvh;
       &.expanded {
         height: fit-content !important;
         max-width: 100vw !important;
