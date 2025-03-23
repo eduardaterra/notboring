@@ -8,7 +8,7 @@
     left: 0;
     opacity: 1;
     display: flex !important;
-    height: 76svh;
+    height: 76lvh;
     &.hidden {
       position: fixed;
       animation: controlVisibility 0.8s forwards ease;
@@ -20,8 +20,7 @@
       overflow: visible;
     }
     @include verticalScreen {
-      min-width: 33.6vw;
-
+      min-width: 44.1vw;
       z-index: 100;
     }
   }
@@ -43,7 +42,7 @@
     width: 100%;
 
     @include desktop {
-      height: 76svh;
+      height: 76lvh;
     }
     @include verticalScreen {
       height: fit-content !important;
