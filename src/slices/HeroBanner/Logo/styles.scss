@@ -1,0 +1,28 @@
+.hero-banner {
+  &--logo-wrapper {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    &.hidden {
+      opacity: 0;
+    }
+  }
+  &--logo-container {
+    position: relative;
+    aspect-ratio: 5/2;
+
+    @include desktop {
+      margin: 2rem;
+      width: 14vw;
+    }
+
+    @include verticalScreen {
+      margin: 2rem 1.5rem;
+      width: 31vw;
+      max-width: 205px !important;
+    }
+  }
+}

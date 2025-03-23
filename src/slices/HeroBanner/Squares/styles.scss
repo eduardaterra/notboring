@@ -1,0 +1,288 @@
+.hero-banner {
+  $hidden-animation-duration: 0.6s;
+  &--first-square-wrapper,
+  &--second-square-wrapper {
+    position: absolute;
+    width: fit-content;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    display: flex !important;
+    height: 76vh;
+    &.hidden {
+      position: fixed;
+      animation: controlVisibility 0.8s forwards ease;
+    }
+
+    @include desktop {
+      min-width: 547px;
+      z-index: 1000;
+      overflow: visible;
+    }
+    @include verticalScreen {
+      min-width: 30vw;
+
+      z-index: 100;
+    }
+  }
+  &--first-square-wrapper {
+    align-items: flex-end;
+  }
+  &--second-square-wrapper {
+    bottom: unset;
+    left: unset;
+    right: 0;
+    top: 0;
+  }
+
+  &--first-square-container,
+  &--second-square-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+
+    @include desktop {
+      height: 76vh;
+    }
+    @include verticalScreen {
+      height: fit-content !important;
+    }
+  }
+
+  &--first-square-item,
+  &--second-square-item {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background-color: $principal-blue;
+    transition: opacity 0.2s ease-in-out;
+
+    @include desktop {
+      height: 100%;
+    }
+
+    @include verticalScreen {
+      height: unset;
+    }
+  }
+
+  &--first-square-item {
+    @include desktopWithoutVerticalClass {
+      &.default {
+        opacity: 0;
+        @include squareAnimation(7, 0.2s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(9, 0.3s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(11, 0.4s, bottom, scaleYAndFadeIn, 0.5s);
+      }
+      &.hidden {
+        opacity: 0;
+        @include squareAnimation(
+          3,
+          0.3s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          5,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          7,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.1s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          12,
+          0,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+    @include verticalScreen {
+      &.default {
+        opacity: 0;
+
+        @include squareAnimation(2, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(3, 0.2s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(4, 0.1s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(9, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(10, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(12, 0.2s, top, scaleYAndFadeIn, 0.5s);
+      }
+      &.hidden {
+        opacity: 0;
+
+        @include squareAnimation(
+          3,
+          0.3s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          5,
+          0.2s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          7,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.1s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          12,
+          0,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+  }
+
+  &--second-square-item {
+    @include verticalScreen {
+      &.default {
+        opacity: 0;
+
+        @include squareAnimation(1, 0.1s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(2, 0.1s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(6, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(7, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(12, 0.2s, right, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(10, 0.2s, right, scaleXAndFadeIn, 0.5s);
+      }
+      &.hidden {
+        opacity: 0;
+
+        @include squareAnimation(
+          12,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          8,
+          0.3s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          1,
+          0.2s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+    @include desktopWithoutVerticalClass {
+      &.default {
+        opacity: 0;
+        @include squareAnimation(2, 0s, right, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(6, 0.1s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.2s, bottom, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(12, 0.3s, left, scaleXAndFadeIn, 0.5s);
+      }
+      &.hidden {
+        opacity: 0;
+
+        @include squareAnimation(
+          12,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.2s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          8,
+          0.3s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          1,
+          0.2s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          2,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+  }
+}

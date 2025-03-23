@@ -2,17 +2,16 @@ import { useLayoutEffect, useState, type HTMLAttributes } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { type Content } from "@prismicio/client";
-import { validateDevice } from "@/utils/mobileUtils";
+import { useHeroBannerContext } from "../context";
 import "./styles.scss";
 
 interface VideoProps extends HTMLAttributes<HTMLDivElement> {
   video: Content.HeroBannerSliceDefaultPrimary["video"];
-  isExpanded: boolean;
 }
 
-export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
+export default function Video({ video }: Readonly<VideoProps>) {
+  const { isExpanded, orientation } = useHeroBannerContext();
   const [canLoadControls, setCanLoadControls] = useState(false);
-  const { isMobile } = validateDevice();
 
   useLayoutEffect(() => {
     if (isExpanded) {
@@ -24,7 +23,11 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
 
   return (
     <div
-      className={clsx("hero-banner--video-container", isExpanded && "expanded")}
+      className={clsx(
+        "hero-banner--video-container",
+        isExpanded && "expanded",
+        orientation
+      )}
       onClick={(e) => {
         if (isExpanded) {
           e.stopPropagation();
@@ -35,7 +38,8 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
         <div
           className={clsx(
             "hero-banner--video-wrapper",
-            isExpanded && "expanded"
+            isExpanded && "expanded",
+            orientation
           )}
         >
           {video.link_type === "Media" ? (
@@ -54,7 +58,12 @@ export default function Video({ video, isExpanded }: Readonly<VideoProps>) {
         <div
           className={clsx(
             "hero-banner--play-icon",
-            isExpanded ? (isMobile ? "hidden-mobile" : "hidden") : null
+            isExpanded
+              ? orientation === "vertical"
+                ? "hidden-mobile"
+                : "hidden"
+              : null,
+            orientation
           )}
         >
           <div className="hero-banner--play-icon-wrapper">

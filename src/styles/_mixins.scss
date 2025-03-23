@@ -10,6 +10,24 @@
   }
 }
 
+@mixin verticalScreen() {
+  &.vertical {
+    @content;
+  }
+
+  @include mobile() {
+    @content;
+  }
+}
+
+@mixin desktopWithoutVerticalClass() {
+  &:not(&.vertical) {
+    @media (min-width: 960px) {
+      @content;
+    }
+  }
+}
+
 @mixin squaresAnimation($animations, $keyframe) {
   @each $child, $duration in $animations {
     &:nth-child(#{$child}) {

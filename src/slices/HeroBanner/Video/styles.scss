@@ -15,7 +15,9 @@
   &--play-icon-wrapper {
     position: relative;
     cursor: pointer;
-
+    aspect-ratio: 2/3;
+    width: 2.7vw;
+    min-width: 21px;
     &:before {
       transition:
         width 0.4s ease-in-out,
@@ -47,15 +49,6 @@
         opacity: 0.5;
       }
     }
-
-    @include desktop {
-      width: 40px;
-      height: 60px;
-    }
-    @include mobile {
-      width: 21px;
-      height: 32px;
-    }
   }
   &--video-container {
     display: flex;
@@ -63,7 +56,7 @@
     justify-content: center;
     overflow: hidden;
     position: relative;
-    @include desktop {
+    @include desktopWithoutVerticalClass {
       width: 74.5vw;
       height: 76vh;
       background-color: $principal-black;
@@ -82,9 +75,7 @@
         height: 100vh;
       }
     }
-    @include mobile {
-      align-items: flex-end;
-      margin-bottom: 58px;
+    @include verticalScreen {
       background-color: $principal-black;
       transition:
         width 0.5s ease-in-out,
@@ -123,12 +114,19 @@
       filter: brightness(1);
     }
     @include desktop {
+      height: 76vh;
+      &.expanded {
+        height: fit-content !important;
+        max-width: 100vw !important;
+      }
       video {
-        width: 100vw;
+        .expanded & {
+          max-width: 100%;
+        }
       }
     }
-    @include mobile {
-      height: 399px;
+    @include verticalScreen {
+      height: 45vh;
       video {
         .expanded & {
           max-width: 100%;
