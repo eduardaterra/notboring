@@ -8,20 +8,20 @@
     left: 0;
     opacity: 1;
     display: flex !important;
-    height: 76lvh;
     &.hidden {
       position: fixed;
       animation: controlVisibility 0.8s forwards ease;
     }
 
     @include desktop {
+      height: 76vh;
       min-width: 547px;
       z-index: 1000;
       overflow: visible;
     }
-    @include verticalScreen {
-      min-width: 44.1vw;
-      z-index: 100;
+    @include mobile {
+      min-width: 174px;
+      z-index: 1001;
     }
   }
   &--first-square-wrapper {
@@ -40,11 +40,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
-
     @include desktop {
       height: 76lvh;
     }
-    @include verticalScreen {
+    @include mobile {
       height: fit-content !important;
     }
   }
@@ -62,7 +61,7 @@
       height: 100%;
     }
 
-    @include verticalScreen {
+    @include mobile {
       height: unset;
     }
   }
@@ -121,7 +120,7 @@
         );
       }
     }
-    @include verticalScreen {
+    @include mobile {
       &.default {
         opacity: 0;
 
@@ -179,7 +178,7 @@
   }
 
   &--second-square-item {
-    @include verticalScreen {
+    @include mobile {
       &.default {
         opacity: 0;
 

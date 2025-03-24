@@ -58,7 +58,6 @@
     position: relative;
     @include desktopWithoutVerticalClass {
       width: 74.5vw;
-      height: 76lvh;
       background-color: $principal-black;
       transition:
         transform 0.5s ease-in-out,
@@ -75,8 +74,9 @@
         height: 100vh;
       }
     }
-    @include verticalScreen {
+    @include mobile {
       background-color: $principal-black;
+      z-index: 1000;
       transition:
         width 0.5s ease-in-out,
         height 0.5s ease-in-out;
@@ -125,8 +125,8 @@
         }
       }
     }
-    @include verticalScreen {
-      height: 45vh;
+    @include mobile {
+      height: 400px !important;
       video {
         .expanded & {
           max-width: 100%;

@@ -1,7 +1,7 @@
 .hero-banner {
   &--logo-wrapper {
     position: absolute;
-    z-index: 1000;
+    z-index: 1001;
     top: 0;
     left: 0;
     opacity: 1;
@@ -19,9 +19,9 @@
       width: 14vw;
     }
 
-    @include verticalScreen {
+    @include mobile {
       margin: 2rem 1.5rem;
-      width: 31vw;
+      width: 116px;
       max-width: 205px !important;
     }
   }

@@ -1,11 +1,11 @@
 @mixin desktop() {
-  @media (min-width: 960px) {
+  @media (min-width: 1025px) {
     @content;
   }
 }
 
 @mixin mobile() {
-  @media (max-width: 960px) {
+  @media (max-width: 1025px) {
     @content;
   }
 }
@@ -14,15 +14,14 @@
   &.vertical {
     @content;
   }
-
-  @include mobile() {
+  @include mobile {
     @content;
   }
 }
 
 @mixin desktopWithoutVerticalClass() {
   &:not(&.vertical) {
-    @media (min-width: 960px) {
+    @include desktop {
       @content;
     }
   }
