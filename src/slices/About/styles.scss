@@ -10,7 +10,7 @@
     @include desktop {
       padding: 88px 2rem;
     }
-    @include mobile {
+    @include mobileAndResponsive {
       padding: 56px 1.5rem;
     }
   }
@@ -30,7 +30,7 @@
     @include desktop {
       font-size: $font-size-extra-large;
     }
-    @include mobile {
+    @include mobileAndResponsive {
       font-size: $font-size-medium;
     }
   }
@@ -43,7 +43,7 @@
     @include desktop {
       font-size: $font-size-medium;
     }
-    @include mobile {
+    @include mobileAndResponsive {
       font-size: $font-size-small;
     }
   }

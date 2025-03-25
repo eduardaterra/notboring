@@ -23,6 +23,10 @@
       min-width: 174px;
       z-index: 1001;
     }
+    @include responsive {
+      z-index: 1001;
+      min-width: 447px !important;
+    }
   }
   &--first-square-wrapper {
     align-items: flex-end;
@@ -43,7 +47,7 @@
     @include desktop {
       height: 76lvh;
     }
-    @include mobile {
+    @include mobileAndResponsive {
       height: fit-content !important;
     }
   }
@@ -61,13 +65,13 @@
       height: 100%;
     }
 
-    @include mobile {
+    @include mobileAndResponsive {
       height: unset;
     }
   }
 
   &--first-square-item {
-    @include desktopWithoutVerticalClass {
+    @include desktop {
       &.default {
         opacity: 0;
         @include squareAnimation(7, 0.2s, left, scaleXAndFadeIn, 0.5s);
@@ -127,6 +131,67 @@
         @include squareAnimation(4, 0.1s, left, scaleXAndFadeIn, 0.5s);
         @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
         @include squareAnimation(10, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
+
+        &:nth-child(7),
+        &:nth-child(9),
+        &:nth-child(11) {
+          opacity: 0 !important;
+        }
+      }
+      &.hidden {
+        opacity: 0;
+
+        @include squareAnimation(
+          3,
+          0.3s,
+          bottom,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          5,
+          0.2s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          7,
+          0.2s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          11,
+          0.1s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          12,
+          0,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+    @include responsive {
+      &.default {
+        opacity: 0;
+
+        @include squareAnimation(7, 0.2s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(9, 0.3s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(11, 0.4s, bottom, scaleYAndFadeIn, 0.5s);
       }
       &.hidden {
         opacity: 0;
@@ -178,48 +243,7 @@
   }
 
   &--second-square-item {
-    @include mobile {
-      &.default {
-        opacity: 0;
-
-        @include squareAnimation(2, 0.1s, left, scaleXAndFadeIn, 0.5s);
-        @include squareAnimation(6, 0.2s, top, scaleYAndFadeIn, 0.5s);
-        @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
-      }
-      &.hidden {
-        opacity: 0;
-
-        @include squareAnimation(
-          12,
-          0.1s,
-          left,
-          scaleXAndFadeInOut,
-          $hidden-animation-duration
-        );
-        @include squareAnimation(
-          6,
-          0.3s,
-          top,
-          scaleYAndFadeInOut,
-          $hidden-animation-duration
-        );
-        @include squareAnimation(
-          8,
-          0.3s,
-          right,
-          scaleXAndFadeInOut,
-          $hidden-animation-duration
-        );
-        @include squareAnimation(
-          1,
-          0.2s,
-          top,
-          scaleYAndFadeInOut,
-          $hidden-animation-duration
-        );
-      }
-    }
-    @include desktopWithoutVerticalClass {
+    @include desktop {
       &.default {
         opacity: 0;
         @include squareAnimation(2, 0s, right, scaleXAndFadeIn, 0.5s);
@@ -270,6 +294,93 @@
           0.1s,
           left,
           scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+    @include mobile {
+      &.default {
+        opacity: 0;
+
+        @include squareAnimation(2, 0.1s, left, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(6, 0.2s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.3s, bottom, scaleYAndFadeIn, 0.5s);
+
+        &:nth-child(12) {
+          opacity: 0 !important;
+        }
+      }
+      &.hidden {
+        opacity: 0;
+
+        @include squareAnimation(
+          12,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          8,
+          0.3s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          1,
+          0.2s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+      }
+    }
+    @include responsive {
+      &.default {
+        opacity: 0;
+
+        @include squareAnimation(2, 0s, right, scaleXAndFadeIn, 0.5s);
+        @include squareAnimation(6, 0.1s, top, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(8, 0.2s, bottom, scaleYAndFadeIn, 0.5s);
+        @include squareAnimation(12, 0.3s, left, scaleXAndFadeIn, 0.5s);
+      }
+      &.hidden {
+        opacity: 0;
+
+        @include squareAnimation(
+          12,
+          0.1s,
+          left,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          6,
+          0.3s,
+          top,
+          scaleYAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          8,
+          0.3s,
+          right,
+          scaleXAndFadeInOut,
+          $hidden-animation-duration
+        );
+        @include squareAnimation(
+          1,
+          0.2s,
+          top,
+          scaleYAndFadeInOut,
           $hidden-animation-duration
         );
       }

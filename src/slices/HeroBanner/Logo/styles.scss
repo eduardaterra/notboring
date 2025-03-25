@@ -16,10 +16,10 @@
 
     @include desktop {
       margin: 2rem;
-      width: 14vw;
+      width: 203px;
     }
 
-    @include mobile {
+    @include mobileAndResponsive {
       margin: 2rem 1.5rem;
       width: 116px;
       max-width: 205px !important;

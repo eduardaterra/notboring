@@ -36,7 +36,7 @@
         transform: translateX(0%);
       }
     }
-    @include mobile {
+    @include mobileAndResponsive {
       width: 100vw;
     }
   }
@@ -58,7 +58,7 @@
     @include desktop {
       max-width: 438px;
     }
-    @include mobile {
+    @include mobileAndResponsive {
       padding: 0 1.5rem;
     }
     form {

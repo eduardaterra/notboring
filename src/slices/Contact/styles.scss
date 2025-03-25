@@ -3,12 +3,13 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
     @include desktop {
       flex-direction: row;
       padding: 120px 2rem 88px;
       gap: 27px;
     }
-    @include mobile {
+    @include mobileAndResponsive {
       padding: 0 1.5rem 40px;
       flex-direction: column;
     }
@@ -25,6 +26,12 @@
       width: 100%;
       padding: 56px 0;
     }
+    @include responsive {
+      align-items: center;
+      padding: 56px 0;
+      width: 100%;
+      max-width: 640px;
+    }
   }
   &--text {
     color: $principal-white;
@@ -32,6 +39,9 @@
     line-height: 120%;
     font-weight: $font-weight-regular;
     text-align: left;
+    @include responsive {
+      text-align: center;
+    }
   }
 
   &--offices-container {
@@ -44,6 +54,10 @@
       grid-template-columns: repeat(2, 1fr);
       column-gap: 18px;
       row-gap: 3rem;
+    }
+    @include responsive {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1.5rem;
     }
   }
 }

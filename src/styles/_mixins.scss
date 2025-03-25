@@ -1,17 +1,26 @@
+@use "sass:math";
+
+$min-width: 1025px;
+
 @mixin desktop() {
   @media (min-width: 1025px) {
     @content;
   }
 }
-
 @mixin mobile() {
   @media (max-width: 1025px) {
     @content;
   }
 }
 
-@mixin verticalScreen() {
-  &.vertical {
+@mixin responsive() {
+  @media (min-width: $min-width) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin mobileAndResponsive() {
+  @include responsive {
     @content;
   }
   @include mobile {
