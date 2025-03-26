@@ -5,12 +5,12 @@ import { useHeroBannerContext } from "../context";
 import "./styles.scss";
 
 export default function Container({ children }: Readonly<PropsWithChildren>) {
-  const { handleExpand, isExpanded, orientation } = useHeroBannerContext();
+  const { handleExpand, isExpanded } = useHeroBannerContext();
   const expanded = isExpanded && "expanded";
 
   return (
     <div
-      className={clsx("hero-banner--container", orientation)}
+      className={"hero-banner--container"}
       onClick={() => handleExpand(true)}
     >
       {children}

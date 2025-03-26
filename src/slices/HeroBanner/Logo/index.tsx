@@ -4,11 +4,11 @@ import { useHeroBannerContext } from "../context";
 import "./styles.scss";
 
 export default function Logo() {
-  const { isExpanded, orientation } = useHeroBannerContext();
+  const { isExpanded } = useHeroBannerContext();
   const hidden = isExpanded && "hidden";
 
   return (
-    <div className={clsx("hero-banner--logo-wrapper", hidden, orientation)}>
+    <div className={clsx("hero-banner--logo-wrapper", hidden)}>
       <div className="hero-banner--logo-container">
         <Image
           className="hero-banner--logo-image"

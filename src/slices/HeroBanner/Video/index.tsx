@@ -2,6 +2,7 @@ import { useLayoutEffect, useState, type HTMLAttributes } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { type Content } from "@prismicio/client";
+import { validateDevice } from "@/utils/mobileUtils";
 import { useHeroBannerContext } from "../context";
 import "./styles.scss";
 
@@ -10,7 +11,8 @@ interface VideoProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Video({ video }: Readonly<VideoProps>) {
-  const { isExpanded, orientation } = useHeroBannerContext();
+  const { isExpanded } = useHeroBannerContext();
+  const { isMobile } = validateDevice();
   const [canLoadControls, setCanLoadControls] = useState(false);
 
   useLayoutEffect(() => {
@@ -23,11 +25,7 @@ export default function Video({ video }: Readonly<VideoProps>) {
 
   return (
     <div
-      className={clsx(
-        "hero-banner--video-container",
-        isExpanded && "expanded",
-        orientation
-      )}
+      className={clsx("hero-banner--video-container", isExpanded && "expanded")}
       onClick={(e) => {
         if (isExpanded) {
           e.stopPropagation();
@@ -38,8 +36,7 @@ export default function Video({ video }: Readonly<VideoProps>) {
         <div
           className={clsx(
             "hero-banner--video-wrapper",
-            isExpanded && "expanded",
-            orientation
+            isExpanded && "expanded"
           )}
         >
           {video.link_type === "Media" ? (
@@ -58,12 +55,7 @@ export default function Video({ video }: Readonly<VideoProps>) {
         <div
           className={clsx(
             "hero-banner--play-icon",
-            isExpanded
-              ? orientation === "vertical"
-                ? "hidden-mobile"
-                : "hidden"
-              : null,
-            orientation
+            isExpanded ? (isMobile ? "hidden-mobile" : "hidden") : null
           )}
         >
           <div className="hero-banner--play-icon-wrapper">
