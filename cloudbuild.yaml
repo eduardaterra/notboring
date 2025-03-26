@@ -24,6 +24,8 @@ steps:
         "us-east1-docker.pkg.dev/$PROJECT_ID/notboring/notboring:prod",
         "--region",
         "us-east1",
+        "--set-env-vars",
+        "NEXT_PUBLIC_FIRESTORE_PROJECT_ID=$PROJECT_ID",
       ]
 images:
   - "us-east1-docker.pkg.dev/$PROJECT_ID/notboring/notboring:prod"
