@@ -1,7 +1,7 @@
 import { ActionDispatch } from "react";
 import Contact from "@/app/api/domain/entities/Contact";
 
-export type ContactsErrorDispatcher = ActionDispatch<
+export type ContactErrorDispatcher = ActionDispatch<
   [
     action: {
       type: "name" | "company" | "email" | "message";
@@ -12,7 +12,7 @@ export type ContactsErrorDispatcher = ActionDispatch<
   ]
 >;
 
-export class ContactsService {
+export class ContactService {
   private readonly contact: Contact;
   private readonly endpoint: string = "/api/firestore/contacts";
 
@@ -25,7 +25,7 @@ export class ContactsService {
     );
   }
 
-  private validate(dispatchError: ContactsErrorDispatcher) {
+  private validate(dispatchError: ContactErrorDispatcher) {
     const { name, company, email, message } = this.contact;
     let result = true;
     const regex = new RegExp(
@@ -58,7 +58,7 @@ export class ContactsService {
     });
   }
 
-  async submit(dispatchError: ContactsErrorDispatcher) {
+  async submit(dispatchError: ContactErrorDispatcher) {
     if (!this.validate(dispatchError)) return { success: false };
     try {
       const res = await this.create();

@@ -13,9 +13,9 @@ import TextArea from "@/components/TextArea";
 import Button from "@/components/Button";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import {
-  ContactsErrorDispatcher,
-  ContactsService,
-} from "@/app/api/domain/services/ContactsService";
+  ContactErrorDispatcher,
+  ContactService,
+} from "@/app/api/domain/services/ContactService";
 
 import "./styles.scss";
 
@@ -97,11 +97,11 @@ export default function ContactForm({
 
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>,
-    dispatchError: ContactsErrorDispatcher
+    dispatchError: ContactErrorDispatcher
   ) => {
     setFormStatus("loading");
     e.preventDefault();
-    const service = new ContactsService(new FormData(e.currentTarget));
+    const service = new ContactService(new FormData(e.currentTarget));
     const res = await service.submit(dispatchError);
 
     if (!res.success) {
