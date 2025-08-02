@@ -15,7 +15,7 @@ import { useScrollLock } from "@/hooks/useScrollLock";
 import {
   ContactsErrorDispatcher,
   ContactsService,
-} from "@/services/ContactsService";
+} from "@/app/api/domain/services/ContactsService";
 
 import "./styles.scss";
 

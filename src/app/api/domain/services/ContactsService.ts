@@ -1,4 +1,5 @@
 import { ActionDispatch } from "react";
+import Contact from "@/app/api/domain/entities/Contact";
 
 export type ContactsErrorDispatcher = ActionDispatch<
   [
@@ -12,61 +13,55 @@ export type ContactsErrorDispatcher = ActionDispatch<
 >;
 
 export class ContactsService {
-  readonly name: string | null = null;
-  readonly company: string | null = null;
-  readonly email: string | null = null;
-  readonly message: string | null = null;
+  private readonly contact: Contact;
+  private readonly endpoint: string = "/api/firestore/contacts";
 
   constructor(formData: FormData) {
-    this.name = String(formData.get("name"));
-    this.company = String(formData.get("company"));
-    this.email = String(formData.get("email"));
-    this.message = String(formData.get("message"));
+    this.contact = new Contact(
+      String(formData.get("name") as string),
+      String(formData.get("company") as string),
+      String(formData.get("email") as string),
+      String(formData.get("message") as string)
+    );
   }
 
   private validate(dispatchError: ContactsErrorDispatcher) {
+    const { name, company, email, message } = this.contact;
     let result = true;
     const regex = new RegExp(
       /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
     );
 
-    if (!regex.test(this.email as string)) {
+    if (!regex.test(email)) {
       dispatchError({ type: "email", payload: { error: true } });
       result = false;
     }
-    if (!this.name || this.name.length === 0) {
+    if (!name || name.length === 0) {
       dispatchError({ type: "name", payload: { error: true } });
       result = false;
     }
-    if (!this.company || this.company.length === 0) {
+    if (!company || company.length === 0) {
       dispatchError({ type: "company", payload: { error: true } });
       result = false;
     }
-    if (!this.message || this.message.length === 0) {
+    if (!message || message.length === 0) {
       dispatchError({ type: "message", payload: { error: true } });
       result = false;
     }
     return result;
   }
 
-  private async createContact() {
-    const data = {
-      name: this.name,
-      company: this.company,
-      email: this.email,
-      message: this.message,
-    };
-
-    return fetch("/api/firestore/contacts", {
+  private async create() {
+    return fetch(this.endpoint, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(this.contact),
     });
   }
 
   async submit(dispatchError: ContactsErrorDispatcher) {
     if (!this.validate(dispatchError)) return { success: false };
     try {
-      const res = await this.createContact();
+      const res = await this.create();
 
       if (res.status !== 201 || !res.ok) {
         throw new Error("An error occurred while sending the information.");
