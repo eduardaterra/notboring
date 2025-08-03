@@ -1,31 +1,52 @@
 "use client";
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { useScrollLock } from "@/hooks/useScrollLock";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 interface IHeroBannerContext {
   isExpanded: boolean;
   handleExpand: (value: boolean) => void;
+  isExpandable?: boolean;
 }
 
 const HeroBannerContext = createContext<IHeroBannerContext | null>(
   {} as IHeroBannerContext
 );
 
-const HeroBannerProvider = ({ children }: PropsWithChildren) => {
+const HeroBannerProvider = ({
+  children,
+  isExpandable,
+}: PropsWithChildren<{ isExpandable?: boolean }>) => {
   const { allowScroll, blockScroll } = useScrollLock();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  function handleExpand(expanded: boolean) {
-    setIsExpanded(expanded);
-    if (expanded) {
-      blockScroll();
-      return;
-    }
-    allowScroll();
-  }
+  const handleExpand = useCallback(
+    (expanded: boolean) => {
+      if (!isExpandable) return;
+
+      setIsExpanded(expanded);
+      if (expanded) {
+        blockScroll();
+        return;
+      }
+      allowScroll();
+    },
+    [allowScroll, blockScroll, isExpandable]
+  );
+
+  const memoizedContextValue = useMemo(
+    () => ({ isExpanded, handleExpand, isExpandable }),
+    [isExpanded, handleExpand, isExpandable]
+  );
 
   return (
-    <HeroBannerContext.Provider value={{ isExpanded, handleExpand }}>
+    <HeroBannerContext.Provider value={memoizedContextValue}>
       {children}
     </HeroBannerContext.Provider>
   );

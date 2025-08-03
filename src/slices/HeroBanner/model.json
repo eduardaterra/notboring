@@ -20,6 +20,15 @@
             "select": "media",
             "allowText": false
           }
+        },
+        "expandVideo": {
+          "type": "Boolean",
+          "config": {
+            "label": "Expand Video",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

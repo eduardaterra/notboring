@@ -11,9 +11,10 @@ interface VideoProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Video({ video }: Readonly<VideoProps>) {
-  const { isExpanded } = useHeroBannerContext();
+  const { isExpanded, isExpandable } = useHeroBannerContext();
   const { isMobile } = validateDevice();
   const [canLoadControls, setCanLoadControls] = useState(false);
+  const hiddenByDevice = isMobile ? "hidden-mobile" : "hidden";
 
   useLayoutEffect(() => {
     if (isExpanded) {
@@ -32,7 +33,7 @@ export default function Video({ video }: Readonly<VideoProps>) {
         }
       }}
     >
-      <div className="hero-banner--video">
+      <div className={clsx("hero-banner--video", isExpandable && "expandable")}>
         <div
           className={clsx(
             "hero-banner--video-wrapper",
@@ -55,10 +56,15 @@ export default function Video({ video }: Readonly<VideoProps>) {
         <div
           className={clsx(
             "hero-banner--play-icon",
-            isExpanded ? (isMobile ? "hidden-mobile" : "hidden") : null
+            !isExpandable || isExpanded ? hiddenByDevice : null
           )}
         >
-          <div className="hero-banner--play-icon-wrapper">
+          <div
+            className={clsx(
+              "hero-banner--play-icon-wrapper",
+              isExpandable && "expandable"
+            )}
+          >
             <Image src="/play.svg" alt="play icon" fill />
           </div>
         </div>

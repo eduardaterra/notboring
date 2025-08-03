@@ -4,8 +4,8 @@
 		"variation": "default",
 		"primary": {
 			"video": {
-				"__TYPE__": "LinkContent",
 				"key": "2fba4a02-e8f4-4c47-bd6f-ec7d24bd1a07",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "FileLink",
 					"id": "mock_Media_link",
@@ -14,6 +14,10 @@
 					"url": "https://source.unsplash.com/daily",
 					"size": "0"
 				}
+			},
+			"expandVideo": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": []

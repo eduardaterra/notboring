@@ -14,7 +14,7 @@
   }
   &--play-icon-wrapper {
     position: relative;
-    cursor: pointer;
+    cursor: default;
     aspect-ratio: 2/3;
     width: 2.7vw;
     min-width: 21px;
@@ -33,6 +33,9 @@
       opacity: 0.3;
       background-color: $principal-blue;
       border-radius: 100%;
+      &.expandable {
+        cursor: pointer;
+      }
     }
 
     &:hover {
@@ -103,7 +106,7 @@
   }
   &--video-wrapper {
     all: unset;
-    cursor: pointer;
+    cursor: default;
     display: flex;
     position: relative;
     justify-content: center;
@@ -120,6 +123,9 @@
     }
     &.expanded {
       filter: brightness(1);
+    }
+    &.expandable {
+      cursor: pointer;
     }
     @include desktop {
       height: 76lvh;

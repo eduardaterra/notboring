@@ -13,11 +13,11 @@ type HeroBannerProps = SliceComponentProps<Content.HeroBannerSlice> &
 
 export default function HeroBanner({
   slice: {
-    primary: { video },
+    primary: { video, expandVideo },
   },
 }: Readonly<HeroBannerProps>) {
   return (
-    <HeroBannerProvider>
+    <HeroBannerProvider isExpandable={expandVideo}>
       <Container>
         <Logo />
         <Squares />
