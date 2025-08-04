@@ -58,6 +58,14 @@
           "thumbnails": []
         },
         "type": "Image"
+      },
+      "favicon": {
+        "type": "Image",
+        "config": {
+          "label": "Favicon",
+          "constraint": {},
+          "thumbnails": []
+        }
       }
     }
   }

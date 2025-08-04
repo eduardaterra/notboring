@@ -8,6 +8,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const prismic = createClient();
   const document = await prismic.getByUID("landing_page", "first-lp");
   return {
+    icons: {
+      icon: document.data.favicon.url as string,
+      apple: document.data.favicon.url as string,
+      shortcut: document.data.favicon.url as string,
+    },
     title:
       document.data.meta_title ?? "NOTBORING - A Creative Company | London UK",
     description:
